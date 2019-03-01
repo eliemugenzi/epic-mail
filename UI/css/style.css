@@ -86,8 +86,8 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   border: 1px solid #5daaff;
-  background: #fff;
-  color: #000;
+  background: #5daaff;
+  color: #fff;
   margin-bottom: 2px;
   text-decoration: none;
 }
@@ -95,6 +95,10 @@ body {
   .main__area .message {
     display: block;
   }
+}
+.main__area .message__container {
+  border: 1px solid #5daaff;
+  background: #4400b6;
 }
 .groups {
   margin: auto 10%;
