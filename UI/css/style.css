@@ -83,9 +83,12 @@ body {
 .main__area .message {
   display: flex;
   justify-content: space-between;
-  padding: 3px;
-  background: #4400b6;
-  color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #5daaff;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
   margin-bottom: 2px;
   text-decoration: none;
 }
