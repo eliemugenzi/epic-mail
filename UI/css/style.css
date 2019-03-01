@@ -275,7 +275,8 @@ form .input-field label {
 }
 form .input-field input[type="text"],
 form .input-field input[type="email"],
-form .input-field input[type="password"] {
+form .input-field input[type="password"],
+form .input-field input[type="number"] {
   width: 100%;
   border: 1px solid #5daaff;
   border-radius: 5px;
