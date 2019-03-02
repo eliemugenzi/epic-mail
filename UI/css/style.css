@@ -381,8 +381,12 @@ main .sidenav {
     display: flex;
     justify-content: space-between;
     height: auto;
-    overflow-y: scroll;
     width: 100%;
+  }
+}
+@media (min-width: 769px) {
+  main .sidenav {
+    overflow-y: auto;
   }
 }
 main .sidenav .profile {
