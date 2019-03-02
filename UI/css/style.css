@@ -375,13 +375,13 @@ main .sidenav {
   background: #4400b6;
   color: #fff;
   height: 100vh;
-  overflow-y: scroll;
 }
 @media (max-width: 768px) {
   main .sidenav {
     display: flex;
     justify-content: space-between;
     height: auto;
+    overflow-y: scroll;
     width: 100%;
   }
 }
