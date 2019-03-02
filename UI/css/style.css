@@ -360,7 +360,7 @@ form input[type="submit"] {
   height: 0;
   transition: 0.5s ease-out;
 }
-.reply.open {
+.reply.active {
   height: 100%;
   overflow: auto;
 }
