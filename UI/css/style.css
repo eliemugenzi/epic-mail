@@ -375,7 +375,6 @@ main .sidenav {
   background: #4400b6;
   color: #fff;
   height: 100vh;
-  overflow-y: scroll;
 }
 @media (max-width: 768px) {
   main .sidenav {
@@ -383,6 +382,11 @@ main .sidenav {
     justify-content: space-between;
     height: auto;
     width: 100%;
+  }
+}
+@media (min-width: 769px) {
+  main .sidenav {
+    overflow-y: auto;
   }
 }
 main .sidenav .profile {
