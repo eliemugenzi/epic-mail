@@ -353,6 +353,17 @@ form .input-field textarea {
 form input[type="submit"] {
   font-family: "Muli", sans-serif;
 }
+.reply {
+  margin-top: 30px;
+  margin-right: 10%;
+  overflow: hidden;
+  height: 0;
+  transition: 0.5s ease-out;
+}
+.reply.open {
+  height: 100%;
+  overflow: auto;
+}
 main {
   display: flex;
 }
