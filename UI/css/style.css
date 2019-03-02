@@ -1,8 +1,10 @@
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 400;
-  src: local('Muli Regular'), local('Muli-Regular'), url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf) format('truetype');
+  src: local("Muli Regular"), local("Muli-Regular"),
+    url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf)
+      format("truetype");
 }
 .mainFont {
   font-family: "Muli", sans-serif;
@@ -14,7 +16,8 @@ body {
 }
 .home {
   height: 100vh;
-  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat center / cover;
+  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)
+    no-repeat center / cover;
   display: grid;
   place-content: center;
 }
@@ -265,6 +268,47 @@ header nav .menu li a {
 .title__light {
   font-weight: 100;
 }
+.btn__small {
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .btn__small {
+    padding: 0.3rem 0.5rem;
+    display: inline-block;
+  }
+}
+.btn__small.btn-primary {
+  background: #4400b6;
+  color: #fff;
+  border: 1px solid #4400b6;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-primary:hover {
+  background: #fff;
+  color: #4400b6;
+}
+.btn__small.btn-secondary {
+  background: #5daaff;
+  color: #fff;
+  border: 1px solid #5daaff;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-secondary:hover {
+  background: #fff;
+  color: #5daaff;
+}
+.btn__small.btn-dark {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-dark:hover {
+  background: #fff;
+  color: #000;
+}
 form {
   position: relative;
 }
@@ -423,6 +467,7 @@ main .main__area {
 .single {
   margin: auto 10%;
   border: 1px solid #5daaff;
+  padding: 20px;
 }
 .single strong {
   position: relative;
