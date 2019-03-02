@@ -422,6 +422,12 @@ main .main__area {
 }
 .single {
   margin: auto 10%;
+  border: 1px solid #5daaff;
+}
+.single strong {
+  position: relative;
+  width: 100%;
+  font-weight: 100;
 }
 .single__options {
   display: flex;
