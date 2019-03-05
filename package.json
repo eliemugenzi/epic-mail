@@ -1,0 +1,48 @@
+{
+  "name": "epicmail",
+  "version": "1.0.0",
+  "description": "Electronic Mail System",
+  "main": "app.js",
+  "scripts": {
+    "test": "nyc mocha ./server/test/*.js --require @babel/register",
+    "start": "babel-node app.js",
+    "dev": "nodemon --exec babel-node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliemugenzi/epic-mail.git"
+  },
+  "keywords": [
+    "Epic",
+    "Mail"
+  ],
+  "author": "Elie Mugenzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliemugenzi/epic-mail/issues"
+  },
+  "homepage": "https://github.com/eliemugenzi/epic-mail#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "babel-polyfill": "^6.26.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "nyc": "^13.3.0"
+  }
+}
