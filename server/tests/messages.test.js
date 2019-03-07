@@ -69,7 +69,7 @@ describe("MESSAGE TEST RESULTS", () => {
       .post("/api/v1/messages")
       .send(newMessage)
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(200);
       });
     done();
   });

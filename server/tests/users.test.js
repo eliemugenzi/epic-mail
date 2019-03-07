@@ -12,40 +12,6 @@ describe("App results", () => {
 });
 
 describe("USER LOGIN TESTS", () => {
-  it("Should get a token ", done => {
-    chai
-      .request(app)
-      .post("/api/v1/auth/login")
-      .send({
-        email: "inezairwanda@gmail.com",
-        password: "123456"
-      })
-      .end((err, res) => {
-        res.body.should.have.property("token");
-      });
-    done();
-  });
-  it("Should have status 200", done => {
-    let message = {
-      id: 2,
-      subject: "Welcome to Andela Bootcamp",
-      body: "Welcome all to the bootcamp,hope you will be enjoying this.",
-      senderId: 8,
-      receiverId: 9,
-      parentMessageId: 20,
-      createdOn: Date.now()
-    };
-    chai
-      .request(app)
-      .post("/api/v1/messages")
-      .send(message)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a("object");
-      });
-    done();
-  });
-
   it("Should have an object", done => {
     chai
       .request(app)
