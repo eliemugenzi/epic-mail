@@ -6,6 +6,8 @@ import logger from "morgan";
 
 import authRouter from "./server/routes/auth";
 import messageRouter from "./server/routes/messages";
+import userRouter from "./server/routes/users";
+import contactRouter from "./server/routes/contacts";
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,6 +19,8 @@ app.get("/", (req, res) => res.json({ message: "Hello world" }));
 //Routers middleware config
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/messages", messageRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/contacts", contactRouter);
 
 app.listen(process.env.PORT, () => {
   /* eslint-disable-next-line */
