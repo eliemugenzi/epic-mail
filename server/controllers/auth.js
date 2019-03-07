@@ -44,24 +44,31 @@ class AuthController {
     let credentials = { email, password };
 
     let userData = User.findByEmail({ email });
-    if (userData.password === password) {
-      jwt.sign(
-        { user: credentials },
-        process.env.SECRET_KEY,
-        { expiresIn: "2 days" },
-        (err, token) => {
-          let context = {
-            status: 200,
-            token,
-            data: credentials
-          };
-          res.json(context);
-        }
-      );
+    if (userData) {
+      if (userData.password === password) {
+        jwt.sign(
+          { user: credentials },
+          process.env.SECRET_KEY,
+          { expiresIn: "2 days" },
+          (err, token) => {
+            let context = {
+              status: 200,
+              token,
+              data: credentials
+            };
+            res.json(context);
+          }
+        );
+      } else {
+        res.status(404).json({
+          status: 404,
+          error: "Invalid email and password"
+        });
+      }
     } else {
-      res.json({
+      res.status(404).json({
         status: 404,
-        error: "Invalid email and password"
+        error: "The user with this email doesn't exist"
       });
     }
   };
