@@ -16,7 +16,7 @@ class Contact {
     this.lastname = _lastname;
   }
 
-  static save = ({ email, firstname, lastname }) => {
+  static save({ email, firstname, lastname }) {
     let newContact = {
       id: contacts.length + 1,
       firstname,
@@ -30,20 +30,21 @@ class Contact {
       JSON.stringify(contacts, null, 2)
     );
     return newContact;
-  };
+  }
 
-  static findAll = () => {
+  static findAll() {
     return contacts;
-  };
-  static findById = ({ id }) => {
+  }
+
+  static findById({ id }) {
     return contacts.find((contact = parseInt(contact.id) === parseInt(id)));
-  };
+  }
 
-  static findByEmail = ({ email }) => {
+  static findByEmail({ email }) {
     return contacts.find(contact => contact.email === email);
-  };
+  }
 
-  static remove = ({ id }) => {
+  static remove({ id }) {
     let newContacts = contacts.filter(
       contact => parseInt(contact.id) !== parseInt(id)
     );
@@ -52,7 +53,7 @@ class Contact {
       JSON.stringify(newContacts, null, 2)
     );
     return newContacts;
-  };
+  }
 }
 
 export default Contact;

@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import validateUser from "../helpers/validations/user";
 
 class AuthController {
-  static register = (req, res) => {
+  static register(req, res) {
     let { firstname, lastname, email, password } = req.body;
     const { error } = validateUser(req.body);
     if (error) {
@@ -37,9 +37,9 @@ class AuthController {
         });
       }
     );
-  };
+  }
 
-  static login = (req, res) => {
+  static login(req, res) {
     let { email, password } = req.body;
     let credentials = { email, password };
 
@@ -71,9 +71,9 @@ class AuthController {
         error: "The user with this email doesn't exist"
       });
     }
-  };
+  }
 
-  static users = (req, res) => {
+  static users(req, res) {
     let users = User.findAll();
 
     let context = {
@@ -81,8 +81,8 @@ class AuthController {
       data: users
     };
     res.json(context);
-  };
-  static singleUser = (req, res) => {
+  }
+  static singleUser(req, res) {
     let { id } = req.params;
     let singleUser = User.findById({ id });
     if (singleUser) {
@@ -96,7 +96,7 @@ class AuthController {
         error: `This user of id ${id} is not found!`
       });
     }
-  };
+  }
 }
 
 export default AuthController;

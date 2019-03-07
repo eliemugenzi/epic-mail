@@ -36,25 +36,25 @@ class User {
     );
   };
 
-  static findAll = () => {
+  static findAll() {
     return users;
-  };
+  }
 
-  static findById = ({ id }) => {
+  static findById({ id }) {
     let oneUser = users.find(user => parseInt(user.id) === parseInt(id));
     return oneUser;
-  };
+  }
 
-  static findByEmail = ({ email }) => {
+  static findByEmail({ email }) {
     let oneUser = users.find(user => user.email === email);
     return oneUser;
-  };
+  }
 
-  static find = ({ email, password }) => {
+  static find({ email, password }) {
     return users.find(
       user => user.email === email && user.pasword === password
     );
-  };
+  }
 }
 
 export default User;

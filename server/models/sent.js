@@ -17,7 +17,7 @@ class Sent {
     this.messageId = messageId;
   }
 
-  static save = ({ senderId, messageId }) => {
+  static save({ senderId, messageId }) {
     let newSent = {
       senderId: senderId,
       messageId: messageId,
@@ -28,11 +28,11 @@ class Sent {
       path.resolve(__dirname, "../data/sent.json"),
       JSON.stringify(sent, null, 2)
     );
-  };
+  }
 
-  static findBySender = ({ senderId }) => {
+  static findBySender({ senderId }) {
     return sender.filter(s => parseInt(s.senderId) == parseInt(senderId));
-  };
+  }
 }
 
 export default Sent;

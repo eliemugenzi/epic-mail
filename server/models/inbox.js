@@ -18,7 +18,7 @@ class Inbox {
     this.messsageId = messageId;
   }
 
-  static save = ({ receiverId, messageId }) => {
+  static save({ receiverId, messageId }) {
     let newInbox = {
       receiverId: receiverId,
       messageId: messageId,
@@ -31,19 +31,19 @@ class Inbox {
       JSON.stringify(inbox, null, 2)
     );
     return newInbox;
-  };
+  }
 
-  static findAllByReceiver = ({ receiverId }) => {
+  static findAllByReceiver({ receiverId }) {
     return inbox.filter(
       in_box => parseInt(in_box.receiverId) === parseInt(receiverId)
     );
-  };
+  }
 
-  static findAll = () => {
+  static findAll() {
     return inbox;
-  };
+  }
 
-  static remove = ({ receiverId }) => {
+  static remove({ receiverId }) {
     let newInbox = inbox.filter(in_box => {
       if (parseInt(in_box.receiverId) !== parseInt(receiverId)) {
         return in_box;
@@ -54,7 +54,7 @@ class Inbox {
       path.resolve(__dirname, "../data/inbox.json"),
       JSON.stringify(newInbox, null, 2)
     );
-  };
+  }
 }
 
 export default Inbox;

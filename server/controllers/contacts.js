@@ -2,14 +2,14 @@ import Contact from "../models/contacts";
 import jwt from "jsonwebtoken";
 
 class ContactController {
-  static contacts = (req, res) => {
+  static contacts(req, res) {
     res.json({
       status: 200,
       data: Contact.findAll()
     });
-  };
+  }
 
-  static contact = (req, res) => {
+  static contact(req, res) {
     let { id } = req.params;
     const contactById = Contact.findById({ id });
     if (contactById) {
@@ -24,9 +24,9 @@ class ContactController {
         error: "This contact is not found!"
       });
     }
-  };
+  }
 
-  static createContact = (req, res) => {
+  static createContact(req, res) {
     let { firstname, lastname, email } = req.body;
     let newContact = Contact.save({ email, firstname, lastname });
     res
@@ -35,7 +35,7 @@ class ContactController {
         data: [newContact]
       })
       .status(201);
-  };
+  }
 }
 
 export default ContactController;
