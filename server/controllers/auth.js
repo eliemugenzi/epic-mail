@@ -1,6 +1,8 @@
-import User from "../models/users";
+import users from "../models/users";
 import jwt from "jsonwebtoken";
 import validateUser from "../helpers/validations/user";
+import path from 'path';
+import fs from 'fs';
 
 class AuthController {
   static register(req, res) {
@@ -13,14 +15,14 @@ class AuthController {
       });
     }
     let newUser = {
-      id: User.findAll().length + 1,
+      id: users.length+1
       firstname,
       lastname,
       email,
       password
     };
-    User.save(newUser);
-
+    users.push(newUser);
+    fs.writeFileSync(path.resolve(__dirname, "../data/messages.json"), JSON.stringify(users,null,2));
     jwt.sign(
       {
         user: newUser
@@ -43,7 +45,9 @@ class AuthController {
     let { email, password } = req.body;
     let credentials = { email, password };
 
-    let userData = User.findByEmail({ email });
+
+    let userData = users.find(user => user.email === email);
+    
     if (userData) {
       if (userData.password === password) {
         jwt.sign(
@@ -60,22 +64,23 @@ class AuthController {
           }
         );
       } else {
-        res.status(404).json({
+
+        res.json({
           status: 404,
-          error: "Invalid email and password"
+          error: "Invalid email and password combination"
         });
       }
-    } else {
+    }
+    else {
       res.status(404).json({
         status: 404,
-        error: "The user with this email doesn't exist"
-      });
+        error:'This user not found'
+      })
     }
-  }
+    
+  };
 
-  static users(req, res) {
-    let users = User.findAll();
-
+  static users = (req, res) => {
     let context = {
       status: 200,
       data: users
@@ -84,11 +89,11 @@ class AuthController {
   }
   static singleUser(req, res) {
     let { id } = req.params;
-    let singleUser = User.findById({ id });
+    let singleUser = users.find(user => parseInt(user.id) === parseInt(id));
     if (singleUser) {
       res.json({
         status: 200,
-        data: singleUser
+        data: [singleUser]
       });
     } else {
       res.status(400).json({
