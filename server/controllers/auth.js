@@ -1,8 +1,8 @@
 import users from "../models/users";
 import jwt from "jsonwebtoken";
 import validateUser from "../helpers/validations/user";
-import path from 'path';
-import fs from 'fs';
+import path from "path";
+import fs from "fs";
 
 class AuthController {
   static register(req, res) {
@@ -15,14 +15,17 @@ class AuthController {
       });
     }
     let newUser = {
-      id: users.length+1
+      id: users.length + 1,
       firstname,
       lastname,
       email,
       password
     };
     users.push(newUser);
-    fs.writeFileSync(path.resolve(__dirname, "../data/messages.json"), JSON.stringify(users,null,2));
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/messages.json"),
+      JSON.stringify(users, null, 2)
+    );
     jwt.sign(
       {
         user: newUser
@@ -45,9 +48,8 @@ class AuthController {
     let { email, password } = req.body;
     let credentials = { email, password };
 
-
     let userData = users.find(user => user.email === email);
-    
+
     if (userData) {
       if (userData.password === password) {
         jwt.sign(
@@ -64,21 +66,18 @@ class AuthController {
           }
         );
       } else {
-
         res.json({
           status: 404,
           error: "Invalid email and password combination"
         });
       }
-    }
-    else {
+    } else {
       res.status(404).json({
         status: 404,
-        error:'This user not found'
-      })
+        error: "This user not found"
+      });
     }
-    
-  };
+  }
 
   static users = (req, res) => {
     let context = {
@@ -86,7 +85,7 @@ class AuthController {
       data: users
     };
     res.json(context);
-  }
+  };
   static singleUser(req, res) {
     let { id } = req.params;
     let singleUser = users.find(user => parseInt(user.id) === parseInt(id));
