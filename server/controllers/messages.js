@@ -8,12 +8,14 @@ import sent from "../models/sent";
 import moment from "moment";
 
 class MessageController {
+
   static messages = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
           status: 403,
           error: "Forbidden"
+
         });
       } else {
         if (messages.length) {
@@ -31,12 +33,14 @@ class MessageController {
     });
   };
 
+
   static sent = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
           status: 403,
           error: "Forbidden"
+
         });
       } else {
         let user = users.find(user => user, email === userData.user.email);
@@ -134,6 +138,7 @@ class MessageController {
     });
   };
 
+
   static draft = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -167,6 +172,7 @@ class MessageController {
     });
   };
 
+
   static createMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -196,6 +202,7 @@ class MessageController {
             JSON.stringify(sent, null, 2)
           );
 
+
           let newInbox = {
             receiverId: parseInt(receiverId),
             messageId: messages.length + 1
@@ -217,6 +224,7 @@ class MessageController {
             status
           };
 
+
           messages.push(newMessage);
           res.status(201).json({
             status: 201,
@@ -227,6 +235,7 @@ class MessageController {
     });
   };
 
+
   static replyMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -234,6 +243,7 @@ class MessageController {
           status: 403,
           error: "Forbidden"
         });
+
       } else {
         let userInfo = users.find(user => email === userData.user.email);
         let { parentMessageId } = req.params;
