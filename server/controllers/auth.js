@@ -5,7 +5,7 @@ import path from 'path';
 import fs from 'fs';
 
 class AuthController {
-  static register = (req, res) => {
+  static register(req, res) {
     let { firstname, lastname, email, password } = req.body;
     const { error } = validateUser(req.body);
     if (error) {
@@ -22,7 +22,7 @@ class AuthController {
       password
     };
     users.push(newUser);
-    fs.writeFileSync(path.resolve(__dirname, "../data/messages.json"), JSON.stringify(users));
+    fs.writeFileSync(path.resolve(__dirname, "../data/messages.json"), JSON.stringify(users,null,2));
     jwt.sign(
       {
         user: newUser
@@ -39,13 +39,15 @@ class AuthController {
         });
       }
     );
-  };
+  }
 
-  static login = (req, res) => {
+  static login(req, res) {
     let { email, password } = req.body;
     let credentials = { email, password };
 
+
     let userData = users.find(user => user.email === email);
+    
     if (userData) {
       if (userData.password === password) {
         jwt.sign(
@@ -62,6 +64,7 @@ class AuthController {
           }
         );
       } else {
+
         res.json({
           status: 404,
           error: "Invalid email and password combination"
@@ -83,8 +86,8 @@ class AuthController {
       data: users
     };
     res.json(context);
-  };
-  static singleUser = (req, res) => {
+  }
+  static singleUser(req, res) {
     let { id } = req.params;
     let singleUser = users.find(user => parseInt(user.id) === parseInt(id));
     if (singleUser) {
@@ -98,7 +101,7 @@ class AuthController {
         error: `This user of id ${id} is not found!`
       });
     }
-  };
+  }
 }
 
 export default AuthController;

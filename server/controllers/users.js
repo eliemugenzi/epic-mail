@@ -1,14 +1,14 @@
 import User from "../models/users";
 
 class UserController {
-  static users = (req, res) => {
+  static users(req, res) {
     res.json({
       status: 200,
       data: User.findAll()
     });
-  };
+  }
 
-  static singleUser = (req, res) => {
+  static singleUser(req, res) {
     let { id } = req.params;
     let user = User.findById({ id });
     if (user) {
@@ -24,7 +24,7 @@ class UserController {
         })
         .status(404);
     }
-  };
+  }
 }
 
 export default UserController;
