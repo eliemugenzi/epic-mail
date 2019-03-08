@@ -1,17 +1,22 @@
-import Contact from "../models/contacts";
+import contacts from "../models/contacts";
 import jwt from "jsonwebtoken";
-
+import nmoment from "moment";
+import moment from "moment";
+import path from "path";
+import fs from "fs";
 class ContactController {
   static contacts = (req, res) => {
     res.json({
       status: 200,
-      data: Contact.findAll()
+      data: contacts
     });
   };
 
   static contact = (req, res) => {
     let { id } = req.params;
-    const contactById = Contact.findById({ id });
+    const contactById = contacts.find(
+      contact => parseInt(contact.id) === parseInt(id)
+    );
     if (contactById) {
       let context = {
         status: 200,
@@ -28,7 +33,19 @@ class ContactController {
 
   static createContact = (req, res) => {
     let { firstname, lastname, email } = req.body;
-    let newContact = Contact.save({ email, firstname, lastname });
+    let newContact = {
+      id: contacts.length + 1,
+      firstname,
+      lastname,
+      email,
+      createdOn: moment().format("LL")
+    };
+
+    contacts.push(newContact);
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/contacts.json"),
+      JSON.stringify(contacts, null, 2)
+    );
     res
       .json({
         status: 201,
