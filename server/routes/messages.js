@@ -13,5 +13,8 @@ router.post("/reply/:messageId", verifyToken, MessageController.replyMessage);
 
 router.post("/", verifyToken, MessageController.createMessage);
 router.delete("/:messageId", verifyToken, MessageController.moveToTrash);
+router.get("/unread/messages", MessageController.allUnread);
+router.get("/draft/messages", MessageController.allDrafts);
+router.get("/read/messages", MessageController.allRead);
 
 export default router;
