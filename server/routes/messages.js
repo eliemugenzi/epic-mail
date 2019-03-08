@@ -12,7 +12,6 @@ router.get("/:id", verifyToken, MessageController.message);
 router.post("/reply/:messageId", verifyToken, MessageController.replyMessage);
 
 router.post("/", verifyToken, MessageController.createMessage);
-router.put("/:id/draft", verifyToken, MessageController.moveToDraft);
 router.delete("/:messageId", verifyToken, MessageController.moveToTrash);
 
 export default router;
