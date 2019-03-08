@@ -17,6 +17,9 @@
     "Epic",
     "Mail"
   ],
+  "engines":{
+    "node":"8.10.0"
+  }
   "author": "Elie Mugenzi",
   "license": "MIT",
   "bugs": {
