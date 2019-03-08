@@ -325,7 +325,7 @@ class MessageController {
       data: unread
     });
   };
-  static allDraft = (req, res) => {
+  static allDrafts = (req, res) => {
     let allDrafts = messages.filter(message => message.status === "draft");
     res.json({
       status: 200,
