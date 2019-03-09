@@ -1,32 +1,20 @@
 import { Router } from "express";
-import {
-  userMessages,
-  message,
-  unread,
-  sent,
-  draft,
-  replyMessage,
-  createMessage,
-  moveToTrash,
-  allUnread,
-  allDrafts,
-  allRead
-} from "../controllers/messages";
+import MessageController from "../controllers/messages";
 import verifyToken from "../middleware/auth";
 
 const router = Router();
 
-router.get("/", verifyToken, userMessages);
-router.get("/unread", verifyToken, unread);
-router.get("/sent", verifyToken, sent);
-router.get("/draft", verifyToken, draft);
-router.get("/:id", verifyToken, message);
-router.post("/reply/:messageId", verifyToken, replyMessage);
+router.get("/", verifyToken, MessageController.userMessages);
+router.get("/unread", verifyToken, MessageController.unread);
+router.get("/sent", verifyToken, MessageController.sentMsg);
+router.get("/draft", verifyToken, MessageController.draft);
+router.get("/:id", verifyToken, MessageController.message);
+router.post("/reply/:messageId", verifyToken, MessageController.replyMessage);
 
-router.post("/", verifyToken, createMessage);
-router.delete("/:messageId", verifyToken, moveToTrash);
-router.get("/unread/messages", allUnread);
-router.get("/draft/messages", allDrafts);
-router.get("/read/messages", allRead);
+router.post("/", verifyToken, MessageController.createMessage);
+router.delete("/:messageId", verifyToken, MessageController.moveToTrash);
+router.get("/unread/messages", MessageController.allUnread);
+router.get("/draft/messages", MessageController.allDrafts);
+router.get("/read/messages", MessageController.allRead);
 
 export default router;
