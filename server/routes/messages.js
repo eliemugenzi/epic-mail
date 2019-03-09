@@ -4,9 +4,9 @@ import verifyToken from "../middleware/auth";
 
 const router = Router();
 
-router.get("/", verifyToken, MessageController.messages);
+router.get("/", verifyToken, MessageController.userMessages);
 router.get("/unread", verifyToken, MessageController.unread);
-router.get("/sent", verifyToken, MessageController.sent);
+router.get("/sent", verifyToken, MessageController.sentMsg);
 router.get("/draft", verifyToken, MessageController.draft);
 router.get("/:id", verifyToken, MessageController.message);
 router.post("/reply/:messageId", verifyToken, MessageController.replyMessage);

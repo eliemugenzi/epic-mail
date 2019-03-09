@@ -7,8 +7,8 @@ import inbox from "../models/inbox";
 import sent from "../models/sent";
 import moment from "moment";
 
-class MessageController {
-  static messages = (req, res) => {
+class MessageController{
+  static userMessages = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -31,7 +31,7 @@ class MessageController {
     });
   };
 
-  static sent = (req, res) => {
+static sentMsg = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -61,7 +61,7 @@ class MessageController {
     });
   };
 
-  static message = (req, res) => {
+ static message = (req, res) => {
     let { id } = req.params;
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -104,7 +104,7 @@ class MessageController {
     });
   };
 
-  static unread = (req, res) => {
+ static unread = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -134,7 +134,7 @@ class MessageController {
     });
   };
 
-  static draft = (req, res) => {
+static draft = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -167,7 +167,7 @@ class MessageController {
     });
   };
 
-  static createMessage = (req, res) => {
+static createMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -227,7 +227,7 @@ class MessageController {
     });
   };
 
-  static replyMessage = (req, res) => {
+static replyMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -271,7 +271,7 @@ class MessageController {
     });
   };
 
-  static moveToTrash = (req, res) => {
+static moveToTrash = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -310,7 +310,7 @@ class MessageController {
     });
   };
 
-  static allRead = (req, res) => {
+ static allRead = (req, res) => {
     let read = messages.filter(message => message.status === "read");
     res.json({
       status: 200,
@@ -318,20 +318,22 @@ class MessageController {
     });
   };
 
-  static allUnread = (req, res) => {
+static allUnread = (req, res) => {
     let unread = messages.filter(message => message.status === "sent");
     res.json({
       status: 200,
       data: unread
     });
-  };
-  static allDrafts = (req, res) => {
+};
+  
+static allDrafts = (req, res) => {
     let allDrafts = messages.filter(message => message.status === "draft");
     res.json({
       status: 200,
       data: allDrafts
     });
   };
-}
 
+}
 export default MessageController;
+
