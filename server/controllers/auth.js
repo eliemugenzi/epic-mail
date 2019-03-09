@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import validateUser from "../helpers/validations/user";
 import path from "path";
 import fs from "fs";
+
 class AuthController {
   static register(req, res) {
     let { firstname, lastname, email, password } = req.body;
@@ -81,3 +82,7 @@ class AuthController {
 }
 
 export default AuthController;
+
+
+
+  
