@@ -7,6 +7,7 @@ import inbox from "../models/inbox";
 import sent from "../models/sent";
 import moment from "moment";
 
+
 class MessageController{
   static userMessages = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
@@ -14,6 +15,7 @@ class MessageController{
         res.status(403).json({
           status: 403,
           error: "Forbidden"
+
         });
       } else {
         if (messages.length) {
@@ -61,6 +63,7 @@ static sentMsg = (req, res) => {
     });
   };
 
+
  static message = (req, res) => {
     let { id } = req.params;
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
@@ -69,6 +72,7 @@ static sentMsg = (req, res) => {
           status: 403,
           error: "Forbidden"
         });
+
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
         const newMessage = messages.filter(message => {
@@ -83,6 +87,7 @@ static sentMsg = (req, res) => {
           let newMessages = messages.map(message => {
             if (parseInt(message.id) === parseInt(id)) {
               message.status = "read";
+
             }
             return status;
           });
@@ -150,6 +155,7 @@ static draft = (req, res) => {
           ) {
             return message;
           }
+
         });
         if (draftMessages) {
           let context = {
@@ -166,6 +172,7 @@ static draft = (req, res) => {
       }
     });
   };
+
 
 static createMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
@@ -206,6 +213,7 @@ static createMessage = (req, res) => {
             JSON.stringify(inbox, null, 2)
           );
 
+
           let newMessage = {
             id: messages.length + 1,
             senderId: userInfo.id,
@@ -217,6 +225,7 @@ static createMessage = (req, res) => {
             status
           };
 
+
           messages.push(newMessage);
           res.status(201).json({
             status: 201,
@@ -227,6 +236,7 @@ static createMessage = (req, res) => {
     });
   };
 
+
 static replyMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -234,6 +244,7 @@ static replyMessage = (req, res) => {
           status: 403,
           error: "Forbidden"
         });
+
       } else {
         let userInfo = users.find(user => email === userData.user.email);
         let { parentMessageId } = req.params;
@@ -270,6 +281,7 @@ static replyMessage = (req, res) => {
       }
     });
   };
+
 
 static moveToTrash = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
