@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  messages,
+  userMessages,
   message,
   unread,
   sent,
@@ -16,7 +16,7 @@ import verifyToken from "../middleware/auth";
 
 const router = Router();
 
-router.get("/", verifyToken, messages);
+router.get("/", verifyToken, userMessages);
 router.get("/unread", verifyToken, unread);
 router.get("/sent", verifyToken, sent);
 router.get("/draft", verifyToken, draft);
