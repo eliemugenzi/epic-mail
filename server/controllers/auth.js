@@ -4,7 +4,7 @@ import validateUser from "../helpers/validations/user";
 import path from "path";
 import fs from "fs";
 class AuthController {
-  static register = (req, res) => {
+  static register(req, res) {
     let { firstname, lastname, email, password } = req.body;
     const { error } = validateUser(req.body);
     if (error) {
@@ -23,8 +23,9 @@ class AuthController {
     users.push(newUser);
     fs.writeFileSync(
       path.resolve(__dirname, "../data/messages.json"),
-      JSON.stringify(users)
+      JSON.stringify(users, null, 2)
     );
+
     jwt.sign(
       {
         user: newUser
@@ -41,13 +42,14 @@ class AuthController {
         });
       }
     );
-  };
+  }
 
-  static login = (req, res) => {
+  static login(req, res) {
     let { email, password } = req.body;
     let credentials = { email, password };
 
     let userData = users.find(user => user.email === email);
+
     if (userData) {
       if (userData.password === password) {
         jwt.sign(
@@ -75,7 +77,7 @@ class AuthController {
         error: "This user not found"
       });
     }
-  };
+  }
 }
 
 export default AuthController;

@@ -5,14 +5,14 @@ import jwt from "jsonwebtoken";
 import users from "../models/users";
 import groupMembers from "../models/group-members";
 class GroupController {
-  static groups = (req, res) => {
+  static groups(req, res) {
     res.json({
       status: 200,
       data: groups
     });
-  };
+  }
 
-  static group = (req, res) => {
+  static group(req, res) {
     let { id } = req.params;
     const groupById = groups.find(group => parseInt(group.id) === parseInt(id));
     if (groupById) {
@@ -27,9 +27,9 @@ class GroupController {
         error: "404 Not found!"
       });
     }
-  };
+  }
 
-  static createGroup = (req, res) => {
+  static createGroup(req, res) {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -55,9 +55,9 @@ class GroupController {
           .status(201);
       }
     });
-  };
+  }
 
-  static addMembers = (req, res) => {
+  static addMembers(req, res) {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -89,9 +89,9 @@ class GroupController {
         });
       }
     });
-  };
+  }
 
-  static groupMembers = (req, res) => {
+  static groupMembers(req, res) {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -121,7 +121,7 @@ class GroupController {
         res.json(context);
       }
     });
-  };
+  }
 }
 
 export default GroupController;
