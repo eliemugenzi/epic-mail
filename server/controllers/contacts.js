@@ -51,8 +51,22 @@ class ContactController {
       status: 201,
       data: [newContact]
     });
-  };
+  }
 
+  static deleteContact = (req, res) => {
+    let { id } = req.params;
+    let newContacts = contacts.filter(
+      contact => parseInt(contact.id) !== parseInt(id)
+    );
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/contacts.json"),
+      JSON.stringify(newContacts, null, 2)
+    );
+    res.json({
+      status: 200,
+      data: newContacts
+    });
+  };
 }
 
 export default ContactController;
