@@ -4,5 +4,6 @@ const router = Router();
 
 router.get("/", ContactController.contacts);
 router.get("/:id", ContactController.contact);
+router.delete("/:id", ContactController.deleteContact);
 
 export default router;
