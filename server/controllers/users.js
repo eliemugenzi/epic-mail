@@ -1,16 +1,18 @@
-import User from "../models/users";
+import users from "../models/users";
+import path from "path";
+import fs from "fs";
 
 class UserController {
   static users(req, res) {
     res.json({
       status: 200,
-      data: User.findAll()
+      data: users
     });
   }
 
   static singleUser(req, res) {
     let { id } = req.params;
-    let user = User.findById({ id });
+    let user = users.find(user => parseInt(user.id) === parseInt(id));
     if (user) {
       res.json({
         status: 200,
