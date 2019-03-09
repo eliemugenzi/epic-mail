@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "id": 1,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 9, 2019"
+  },
+  {
+    "id": 2,
+    "firstname": "Elie",
+    "lastname": "Mugenzi",
+    "email": "eliemugenzi@gmail.com",
+    "createdOn": "March 9, 2019"
+  },
+  {
+    "id": 3,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 9, 2019"
+  },
+  {
+    "id": 4,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 9, 2019"
+  },
+  {
+    "id": 5,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 9, 2019"
+  },
+  {
+    "id": 6,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 9, 2019"
+  }
+]

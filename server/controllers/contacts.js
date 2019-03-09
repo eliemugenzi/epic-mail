@@ -46,12 +46,10 @@ class ContactController {
       path.resolve(__dirname, "../data/contacts.json"),
       JSON.stringify(contacts, null, 2)
     );
-    res
-      .json({
-        status: 201,
-        data: [newContact]
-      })
-      .status(201);
+    res.status(201).json({
+      status: 201,
+      data: [newContact]
+    });
   };
 }
 
