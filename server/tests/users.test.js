@@ -2,7 +2,8 @@ import chai from "chai";
 import app from "../../app";
 import chaiHttp from "chai-http";
 import "babel-polyfill";
-
+import users from "../models/users";
+let expect = chai.expect;
 let should = chai.should();
 chai.use(chaiHttp);
 describe("App results", () => {
@@ -52,5 +53,19 @@ describe("RETRIEVE USER INFO", () => {
         });
       done();
     });
+  });
+});
+
+describe("User data tests", () => {
+  it("Should find user by email", done => {
+    let userInfo = users.find(user => user.email === "inezairwanda@gmail.com");
+    if (userInfo) expect(userInfo).to.be.an("object");
+    done();
+  });
+
+  it("Should get user by id", done => {
+    let userInfo = users.find(user => user.id === 1);
+    if (userInfo) expect(userInfo).to.be.an("object");
+    done();
   });
 });
