@@ -83,25 +83,47 @@ body {
 .more__grid--item h3 {
   text-transform: uppercase;
 }
+.main__area {
+  background: #fff;
+}
 .main__area .message {
+  border: 1px solid #d1b6ff;
+  margin: 3px 10%;
+  padding: 5px;
   display: flex;
   justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
+}
+.main__area .message__container {
   border: 1px solid #5daaff;
-  background: #5daaff;
-  color: #fff;
-  margin-bottom: 2px;
-  text-decoration: none;
+
+  margin: 20px 10%;
 }
 @media (max-width: 768px) {
   .main__area .message {
     display: block;
   }
 }
+
+.main__area .message__sender {
+  position: relative;
+  width: 100%;
+  font-weight: 100;
+  font-size: 13px;
+}
+.main__area .message__title {
+  font-weight: 300;
+}
+.main__area .message__title a {
+  text-decoration: none;
+  color: #5daaff;
+}
+.main__area .message__time {
+  font-size: 10px;
+
 .main__area .message__container {
   border: 1px solid #5daaff;
   background: #4400b6;
+
 }
 .groups {
   margin: auto 10%;
@@ -424,6 +446,8 @@ main .sidenav ul {
 main .sidenav ul li {
   margin-bottom: 15px;
   padding: 10px;
+  transform: translateX(-20px);
+  border: 1px solid #fff;
   transition: 0.5s ease-out;
 }
 @media (max-width: 768px) {
