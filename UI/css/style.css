@@ -95,6 +95,7 @@ body {
 }
 .main__area .message__container {
   border: 1px solid #5daaff;
+
   margin: 20px 10%;
 }
 @media (max-width: 768px) {
@@ -102,6 +103,7 @@ body {
     display: block;
   }
 }
+
 .main__area .message__sender {
   position: relative;
   width: 100%;
@@ -117,6 +119,11 @@ body {
 }
 .main__area .message__time {
   font-size: 10px;
+
+.main__area .message__container {
+  border: 1px solid #5daaff;
+  background: #4400b6;
+
 }
 .groups {
   margin: auto 10%;

@@ -1,0 +1,61 @@
+{
+  "name": "epicmail",
+  "version": "1.0.0",
+  "description": "Electronic Mail System",
+  "main": "app.js",
+  "scripts": {
+    "test": "nyc mocha ./server/tests/*.js --require @babel/register || true",
+    "start": "babel-node app.js",
+    "dev": "nodemon --exec babel-node app.js",
+    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliemugenzi/epic-mail.git"
+  },
+  "keywords": [
+    "Epic",
+    "Mail"
+  ],
+  "engines": {
+    "node": "8.10.0"
+  },
+  "author": "Elie Mugenzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliemugenzi/epic-mail/issues"
+  },
+  "homepage": "https://github.com/eliemugenzi/epic-mail#readme",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "babel-polyfill": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "cors": "^2.8.5",
+    "coveralls": "^3.0.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "nyc": "^13.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.0.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.18.10",
+    "nyc": "^13.3.0"
+  }
+}
