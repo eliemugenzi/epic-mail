@@ -1,8 +1,10 @@
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 400;
-  src: local('Muli Regular'), local('Muli-Regular'), url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf) format('truetype');
+  src: local("Muli Regular"), local("Muli-Regular"),
+    url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf)
+      format("truetype");
 }
 .mainFont {
   font-family: "Muli", sans-serif;
@@ -14,7 +16,8 @@ body {
 }
 .home {
   height: 100vh;
-  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat center / cover;
+  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)
+    no-repeat center / cover;
   display: grid;
   place-content: center;
 }
@@ -80,22 +83,40 @@ body {
 .more__grid--item h3 {
   text-transform: uppercase;
 }
+.main__area {
+  background: #fff;
+}
 .main__area .message {
+  border: 1px solid #d1b6ff;
+  margin: 3px 10%;
+  padding: 5px;
   display: flex;
   justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
+}
+.main__area .message__container {
   border: 1px solid #5daaff;
-  border-radius: 5px;
-  background: #fff;
-  color: #000;
-  margin-bottom: 2px;
-  text-decoration: none;
+  margin: 20px 10%;
 }
 @media (max-width: 768px) {
   .main__area .message {
     display: block;
   }
+}
+.main__area .message__sender {
+  position: relative;
+  width: 100%;
+  font-weight: 100;
+  font-size: 13px;
+}
+.main__area .message__title {
+  font-weight: 300;
+}
+.main__area .message__title a {
+  text-decoration: none;
+  color: #5daaff;
+}
+.main__area .message__time {
+  font-size: 10px;
 }
 .groups {
   margin: auto 10%;
@@ -262,6 +283,47 @@ header nav .menu li a {
 .title__light {
   font-weight: 100;
 }
+.btn__small {
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .btn__small {
+    padding: 0.3rem 0.5rem;
+    display: inline-block;
+  }
+}
+.btn__small.btn-primary {
+  background: #4400b6;
+  color: #fff;
+  border: 1px solid #4400b6;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-primary:hover {
+  background: #fff;
+  color: #4400b6;
+}
+.btn__small.btn-secondary {
+  background: #5daaff;
+  color: #fff;
+  border: 1px solid #5daaff;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-secondary:hover {
+  background: #fff;
+  color: #5daaff;
+}
+.btn__small.btn-dark {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  transition: 0.5s ease-out;
+}
+.btn__small.btn-dark:hover {
+  background: #fff;
+  color: #000;
+}
 form {
   position: relative;
 }
@@ -276,7 +338,8 @@ form .input-field label {
 }
 form .input-field input[type="text"],
 form .input-field input[type="email"],
-form .input-field input[type="password"] {
+form .input-field input[type="password"],
+form .input-field input[type="number"] {
   width: 100%;
   border: 1px solid #5daaff;
   border-radius: 5px;
@@ -305,6 +368,17 @@ form .input-field textarea {
 form input[type="submit"] {
   font-family: "Muli", sans-serif;
 }
+.reply {
+  margin-top: 30px;
+  margin-right: 10%;
+  overflow: hidden;
+  height: 0;
+  transition: 0.5s ease-out;
+}
+.reply.active {
+  height: 100%;
+  overflow: auto;
+}
 main {
   display: flex;
 }
@@ -326,6 +400,11 @@ main .sidenav {
     justify-content: space-between;
     height: auto;
     width: 100%;
+  }
+}
+@media (min-width: 769px) {
+  main .sidenav {
+    overflow-y: auto;
   }
 }
 main .sidenav .profile {
@@ -358,8 +437,10 @@ main .sidenav ul {
   }
 }
 main .sidenav ul li {
-  margin-bottom: 30px;
-  padding: 20px;
+  margin-bottom: 15px;
+  padding: 10px;
+  transform: translateX(-20px);
+  border: 1px solid #fff;
   transition: 0.5s ease-out;
 }
 @media (max-width: 768px) {
@@ -418,6 +499,13 @@ main .main__area {
 }
 .single {
   margin: auto 10%;
+  border: 1px solid #5daaff;
+  padding: 20px;
+}
+.single strong {
+  position: relative;
+  width: 100%;
+  font-weight: 100;
 }
 .single__options {
   display: flex;
