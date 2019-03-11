@@ -10,9 +10,13 @@ import userRouter from "./server/routes/users";
 import contactRouter from "./server/routes/contacts";
 
 const app = express();
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(logger("dev"));
+app.use(bodyParser.json());
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(logger("dev"));
 
 app.get("/", (req, res) => res.json({ message: "Hello world" }));
 

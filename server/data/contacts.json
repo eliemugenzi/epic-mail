@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 1,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 11, 2019"
+  },
+  {
+    "id": 2,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 11, 2019"
+  }
+]

@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/eliemugenzi/epic-mail.svg?branch=develop)](https://travis-ci.org/eliemugenzi/epic-mail)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/368eba3147aeed2aaff9/maintainability)](https://codeclimate.com/github/eliemugenzi/epic-mail/maintainability)
+
 ## API ENDPOINTS
 
 | Ressource URL                    | Methods | Description                 |
@@ -121,6 +123,5 @@ It will install the node_modules which will help you run the project on your loc
 ---
 
 ## License & copyright
-
 
 Copyright (c) Elie Mugenzi
