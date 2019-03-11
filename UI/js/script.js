@@ -15,6 +15,7 @@ replySubmitBtn.addEventListener('click', e => {
   replyForm.classList.remove('active');
 })
 
+
 toggle.addEventListener("click", e => {
   e.preventDefault();
   sideMenu.classList.toggle("open");
