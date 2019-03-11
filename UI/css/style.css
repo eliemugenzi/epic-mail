@@ -462,6 +462,7 @@ main .main__area {
   height: 100vh;
   overflow-y: scroll;
 }
+
 @media (max-width: 768px) {
   main .main__area {
     display: inline-block;
