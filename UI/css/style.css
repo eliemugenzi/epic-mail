@@ -1,8 +1,10 @@
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 400;
-  src: local('Muli Regular'), local('Muli-Regular'), url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf) format('truetype');
+  src: local("Muli Regular"), local("Muli-Regular"),
+    url(https://fonts.gstatic.com/s/muli/v12/7Auwp_0qiz-afTLGKA.ttf)
+      format("truetype");
 }
 .mainFont {
   font-family: "Muli", sans-serif;
@@ -14,7 +16,8 @@ body {
 }
 .home {
   height: 100vh;
-  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat center / cover;
+  background: url(https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)
+    no-repeat center / cover;
   display: grid;
   place-content: center;
 }
@@ -462,6 +465,7 @@ main .main__area {
     margin-left: 10%;
   }
 }
+
 .members {
   margin: auto 10%;
 }
