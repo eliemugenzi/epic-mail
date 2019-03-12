@@ -1,0 +1,44 @@
+form {
+  position: relative;
+}
+form .input-field {
+  margin-bottom: 20px;
+  width: 100%;
+}
+form .input-field label {
+  width: 100%;
+  margin-bottom: 8px;
+  position: relative;
+}
+form .input-field input[type="text"],
+form .input-field input[type="email"],
+form .input-field input[type="password"],
+form .input-field input[type="number"] {
+  width: 100%;
+  border: 1px solid #5daaff;
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 15px;
+  outline: none;
+  font-family: "Muli", sans-serif;
+}
+form .input-field select {
+  width: 100%;
+  border: 1px solid #5daaff;
+  height: 35px;
+  padding-left: 15px;
+  outline: none;
+  font-family: "Muli", sans-serif;
+  border-radius: 5px;
+}
+form .input-field textarea {
+  width: 100%;
+  border: 1px solid #5daaff;
+  border-radius: 5px;
+  padding-left: 15px;
+  outline: none;
+  font-family: "Muli", sans-serif;
+}
+form input[type="submit"] {
+  font-family: "Muli", sans-serif;
+}
