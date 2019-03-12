@@ -22,63 +22,24 @@
 
 ## Tools Used
 
-### Language
+- Language: Javascript
+- Server environment: Node.js (A javascript server side environment which can help you build web applications,microservices and APIs)
+- Back-end framework: Express (A server side web framework which can help you build back-end applications and APIs fast.)
+- Testing library: Mocha.js (A javascript library used for unit testing)
+- Assertion library: Chai (A Javascript library to create assertions used in testing)
+- Continuous integration: Travis CI
+- Test coverage: nyc (A javascript library used to generate coverage reports)
+- Test coverage badge: Coveralls (It shows test coverage statistics)
+- Front-end deployment: Github Pages
+- Back-end deployment: Heroku
 
-```
-*Javascript*
-```
+### Github Pages link
 
-### Server Environment
-
-```
- *NodeJS* (run time Environment for running JS codes)
-```
-
-### Framework
-
-```
- *Express* (used for building fast APIs)
-```
-
-### Testing Framework
-
-```
- *Mocha* and *Chai*
-```
-
-### Style Guide
-
-```
-*Airbnb*
-```
-
-### Continuous Integration
-
-```
-Travis CI
-```
-
-### Test Coverage
-
-```
-nyc
-```
-
-### Git badge
-
-```
-coveralls
-```
-
-### Deployment
-
-```
-Heroku
-```
+[EPIC Mail UI](https://eliemugenzi.github.io/epic-mail/UI/)
 
 ### Heroku link Example
 
-[EPIC Mail link](https://elie-epic-mail.herokuapp.com/)
+[EPIC Mail Endpoints](https://elie-epic-mail.herokuapp.com/)
 
 ## Getting Started
 
