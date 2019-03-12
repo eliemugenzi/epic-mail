@@ -40,5 +40,12 @@
     "lastname": "Alphonsine",
     "email": "inezairwanda@gmail.com",
     "createdOn": "March 12, 2019"
+  },
+  {
+    "id": 7,
+    "firstname": "Ineza",
+    "lastname": "Alphonsine",
+    "email": "inezairwanda@gmail.com",
+    "createdOn": "March 12, 2019"
   }
 ]
