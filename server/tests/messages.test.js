@@ -235,7 +235,7 @@ describe('MESSAGE TEST RESULTS', () => {
     done();
   });
 
-  it('Should get all saved messages by authorized user", done => {
+  it('Should get all saved messages by authorized user', (done) => {
     chai
       .request(app)
       .get("/api/v1/messages/draft")
