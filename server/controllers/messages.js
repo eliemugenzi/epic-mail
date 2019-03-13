@@ -41,7 +41,7 @@ static sentMsg = (req, res) => {
           error: "Forbidden"
         });
       } else {
-        let user = users.find(user => user, email === userData.user.email);
+        let user = users.find(user => user.email === userData.user.email);
         //let userSent = Message.findAllSentBySender({ senderId: user.id });
         let userSent = messages.filter(
           message => parseInt(message.senderId) === parseInt(user.id)
