@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "id": 1,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 2,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 3,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 4,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 5,
+    "senderId": 1,
+    "receiverId": 5,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": "1",
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 6,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 7,
+    "senderId": 1,
+    "receiverId": 5,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": "1",
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 8,
+    "senderId": 1,
+    "receiverId": 2,
+    "subject": "You're all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": 0,
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  },
+  {
+    "id": 9,
+    "senderId": 1,
+    "receiverId": 5,
+    "subject": "You are all set to the bootcamp",
+    "message": "Welcome to the bootcamp,hope you will gain more from it.",
+    "parentMessageId": "1",
+    "createdOn": "March 13, 2019",
+    "status": "sent"
+  }
+]
