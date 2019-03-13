@@ -12,21 +12,6 @@ describe("App results", () => {
   });
 });
 
-describe("USER LOGIN TESTS", () => {
-  it("Should have an object", done => {
-    chai
-      .request(app)
-      .post("/api/auth/login")
-      .send({
-        email: "inezairwanda@gmail.com",
-        password: "123456"
-      })
-      .end((err, res) => {
-        res.body.should.be.an("object");
-      });
-    done();
-  });
-});
 
 describe("RETRIEVE USER INFO", () => {
   describe("/GET users", () => {
@@ -48,6 +33,11 @@ describe("RETRIEVE USER INFO", () => {
         .request(app)
         .get("/api/v1/users/1")
         .end((err, res) => {
+          let user = users.find(
+            user => parseInt(user.id, 10) === 1
+          );
+          if (user) expect(user).to.be.an('object');
+          else expect(user).to.be.undefined;
           res.should.have.status(200);
           res.body.should.be.an("object");
         });
@@ -56,16 +46,18 @@ describe("RETRIEVE USER INFO", () => {
   });
 });
 
-describe("User data tests", () => {
-  it("Should find user by email", done => {
-    let userInfo = users.find(user => user.email === "inezairwanda@gmail.com");
-    if (userInfo) expect(userInfo).to.be.an("object");
+describe('User data tests', () => {
+  it('Should find user by email', (done) => {
+    const userInfo = users.find(user => user.email === 'inezairwanda@gmail.com');
+    if (userInfo) expect(userInfo).to.be.an('object');
+    else expect(userInfo).to.be.undefined;
     done();
   });
 
-  it("Should get user by id", done => {
+  it('Should get user by id', (done) => {
     let userInfo = users.find(user => user.id === 1);
-    if (userInfo) expect(userInfo).to.be.an("object");
+    if (userInfo) expect(userInfo).to.be.an('object');
+    else expect(userInfo).to.be.undefined;
     done();
   });
 });
