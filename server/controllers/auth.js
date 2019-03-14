@@ -1,19 +1,13 @@
-import users from '../models/users';
+
 import jwt from 'jsonwebtoken';
-import validateUser from '../helpers/validations/user';
 import path from 'path';
 import fs from 'fs';
+import validateUser from '../helpers/validations/user';
+import users from '../models/users';
 
 class AuthController {
   static register(req, res) {
     const { firstname, lastname, email, password } = req.body;
-    const { error } = validateUser(req.body);
-    if (error) {
-      res.status(400).json({
-        status: 400,
-        error: error.details[0].message,
-      });
-    }
     const newUser = {
       id: users.length + 1,
       firstname,
