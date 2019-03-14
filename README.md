@@ -17,7 +17,6 @@
 | /api/v1/messages/unread/messages | GET     | Fetch all unread messages   |
 | /api/v1/messages                 | POST    | Create a new message        |
 | /api/v1/messages/:id             | DELETE  | Delete a specific message   |
-| /api/v1/messages/:id             | PUT     | Update a specific email     |
 | /api/v1/messages/read/messages   | GET     | GET all read messages       |
 | /api/v1/messages/draft/messages  | GET     | GET all draft messages      |
 | /api/v1/users                    | GET     | Get all contacts            |
