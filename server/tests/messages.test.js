@@ -184,8 +184,6 @@ describe('MESSAGE TEST RESULTS', () => {
 
   it('Should reply to a message', (done) => {
     const newMessage = {
-      id: 5,
-      senderId: 2,
       receiverId: 3,
       subject: 'You are all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
