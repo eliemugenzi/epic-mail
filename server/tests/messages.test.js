@@ -133,6 +133,7 @@ describe('MESSAGE TEST RESULTS', () => {
           if (userInfo) expect(userInfo).to.be.an('object');
           else expect(userInfo).to.be.undefined;
           if (receiverInfo) expect(receiverInfo).to.be.an('object');
+          console.log(res.body);
           else expect(receiverInfo).to.be.undefined;
           res.should.have.status(201);
         }
