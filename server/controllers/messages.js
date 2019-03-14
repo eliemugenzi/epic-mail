@@ -181,7 +181,7 @@ static createMessage = (req, res) => {
             message,
             parentMessageId: 0,
             createdOn: moment().format("LL"),
-            status
+            status:'sent'
           };
 
 
