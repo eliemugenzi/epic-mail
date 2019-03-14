@@ -181,7 +181,7 @@ static createMessage = (req, res) => {
             message,
             parentMessageId: 0,
             createdOn: moment().format("LL"),
-            status
+            status:'sent'
           };
 
 
@@ -208,7 +208,7 @@ static replyMessage = (req, res) => {
       } else {
         let userInfo = users.find(user => user.email === userData.user.email);
         let { parentMessageId } = req.params;
-        let { subject, message, receiverId, status } = req.body;
+        let { subject, message, receiverId } = req.body;
         console.log(userData.user);
         let receiverInfo = users.find(
           user => parseInt(user.id) === parseInt(receiverId)
@@ -235,7 +235,6 @@ static replyMessage = (req, res) => {
             message,
             parentMessageId,
             createdOn: moment().format('LL'),
-            status
           };
           messages.push(replyMessageInfo);
           fs.writeFileSync(
