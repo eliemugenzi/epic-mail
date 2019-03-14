@@ -111,7 +111,6 @@ describe('MESSAGE TEST RESULTS', () => {
       receiverId: 3,
       subject: 'You\'re all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
-      parentMessageId: 0
     };
     chai
       .request(app)
