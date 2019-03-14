@@ -5,7 +5,7 @@ import messages from '../models/messages';
 import users from '../models/users';
 
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJFbGllIiwibGFzdG5hbWUiOiJNdWdlbnppIiwiZW1haWwiOiJlbGllbXVnZW56aUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImNyZWF0ZWRPbiI6Ik1hcmNoIDEzLCAyMDE5In0sImlhdCI6MTU1MjQ3MzMxMX0.xpjfqq1OfCf-3FKT2jBkkEZS2QLVcmUTaXdRCHJXSgI';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXhlbG1hbnppQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2In0sImlhdCI6MTU1MjU0NzIyMSwiZXhwIjoxNTUyNzIwMDIxfQ.UVQZDfGq75gC2oprAhThpVcnLZLoZD4WTHmg6MqG7zY';
 chai.use(chaiHttp);
 let should = chai.should();
 let expect = chai.expect;
