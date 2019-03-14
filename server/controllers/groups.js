@@ -1,30 +1,32 @@
-import groups from "../models/groups";
-import path from "path";
-import fs from "fs";
-import jwt from "jsonwebtoken";
-import users from "../models/users";
-import groupMembers from "../models/group-members";
+
+import path from 'path';
+import fs from 'fs';
+import jwt from 'jsonwebtoken';
+import users from '../models/users';
+import groupMembers from '../models/group-members';
+import groups from '../models/groups';
+
 class GroupController {
   static groups(req, res) {
     res.json({
       status: 200,
-      data: groups
+      data: groups,
     });
   }
 
   static group(req, res) {
-    let { id } = req.params;
-    const groupById = groups.find(group => parseInt(group.id) === parseInt(id));
+    const { id } = req.params;
+    const groupById = groups.find(group => parseInt(group.id, 10) === parseInt(id, 10));
     if (groupById) {
-      let context = {
+      const context = {
         status: 200,
-        data: groupById
+        data: groupById,
       };
       res.json(context);
     } else {
       res.status(404).json({
         status: 404,
-        error: "404 Not found!"
+        error: '404 Not found!',
       });
     }
   }
@@ -34,23 +36,23 @@ class GroupController {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
-        let { name } = req.body;
-        let newGroup = {
+        const { name } = req.body;
+        const newGroup = {
           id: groups.length + 1,
-          name
+          name,
         };
         groups.push(newGroup);
         fs.writeFileSync(
-          path.resolve(__dirname, "../data/groups.json"),
-          JSON.stringify(groups, null, 2)
+          path.resolve(__dirname, '../data/groups.json'),
+          JSON.stringify(groups, null, 2),
         );
         res
           .json({
             status: 201,
-            data: newGroup
+            data: newGroup,
           })
           .status(201);
       }
@@ -62,30 +64,30 @@ class GroupController {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
-        let { memberId } = req.body;
-        let { groupId } = req.params;
+        const { memberId } = req.body;
+        const { groupId } = req.params;
 
-        let groupMember = {
-          groupId: parseInt(groupId),
-          memberId: parseInt(memberId)
+        const groupMember = {
+          groupId: parseInt(groupId, 10),
+          memberId: parseInt(memberId, 10),
         };
 
         groupMembers.push(groupMember);
 
         fs.writeFileSync(
-          path.resolve(__dirname, "../data/group-members.json"),
-          JSON.stringify(groupMembers, null, 2)
+          path.resolve(__dirname, '../data/group-members.json'),
+          JSON.stringify(groupMembers, null, 2),
         );
 
         const currentGroup = groups.find(
-          group => parseInt(group.id) === parseInt(groupId)
+          group => parseInt(group.id, 10) === parseInt(groupId, 10),
         );
         res.json({
           status: 200,
-          data: currentGroup
+          data: currentGroup,
         });
       }
     });
@@ -96,26 +98,26 @@ class GroupController {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
-        let { groupId } = req.params;
-        let groupById = groups.find(
-          group => parseInt(group.id) === parseInt(groupId)
+        const { groupId } = req.params;
+        const groupById = groups.find(
+          group => parseInt(group.id, 10) === parseInt(groupId, 10),
         );
-        let members = groupById.members.forEach(member => {
-          let user = users.find(user => parseInt(user.id) === parseInt(member));
-          return user;
+        const members = groupById.members.forEach((member) => {
+          const userInfo = users.find(user => parseInt(user.id, 10) === parseInt(member, 10));
+          return userInfo;
         });
-        let context = {
+        const context = {
           status: 200,
           data: [
             {
               id: groupId,
               name: groupById.name,
-              members
-            }
-          ]
+              members,
+            },
+          ],
         };
 
         res.json(context);

@@ -1,11 +1,11 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
-let groupMembers;
+let groupMembers = [];
 
 const members = fs.readFileSync(
-  path.resolve(__dirname, "../data/group-members.json"),
-  { encoding: "utf-8" }
+  path.resolve(__dirname, '../data/group-members.json'),
+  { encoding: 'utf-8' },
 );
 
 groupMembers = JSON.parse(members);

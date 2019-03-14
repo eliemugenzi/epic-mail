@@ -1,6 +1,6 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-const validateUser = user => {
+const validateUser = (user) => {
   const schema = Joi.object().keys({
     firstname: Joi.string()
       .alphanum()
@@ -15,7 +15,7 @@ const validateUser = user => {
       .required(),
     password: Joi.string()
       .regex(/[a-zA-Z0-9]{6,15}/)
-      .required()
+      .required(),
   });
 
   return Joi.validate(user, schema);

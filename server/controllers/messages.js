@@ -31,7 +31,7 @@ static sentMsg = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
         let user = users.find(user => user.email === userData.user.email);
@@ -41,7 +41,7 @@ static sentMsg = (req, res) => {
         );
         res.json({
           status: 200,
-          data: userSent
+          data: userSent,
         });
       }
     });
@@ -54,7 +54,7 @@ static sentMsg = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
 
       } else {
@@ -75,7 +75,7 @@ static sentMsg = (req, res) => {
         } else {
           res.json({
             status: 404,
-            error: "404 Not found"
+            error: '404 Not found',
           });
         }
       }
@@ -87,13 +87,13 @@ static sentMsg = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
         const unreadMessages = messages.filter(
           message =>
-            message.status === "sent" &&
+            message.status === 'sent' &&
             parseInt(message.receiverId) === parseInt(userInfo.id)
         );
         let context = {
@@ -110,14 +110,14 @@ static draft = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
         const draftMessages = messages.map(message => {
           if (
             parseInt(message.senderId) === parseInt(userInfo.id) &&
-            message.status === "draft"
+            message.status === 'draft'
           ) {
             return message;
           }
@@ -138,7 +138,7 @@ static createMessage = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
@@ -149,7 +149,7 @@ static createMessage = (req, res) => {
         if (parseInt(userInfo.id) === parseInt(receiverInfo.id)) {
           res.status(400).json({
             status: 400,
-            error: "The sender and recipient must not be the same"
+            error: 'The sender and recipient must not be the same',
           });
         } else {
           let newSent = {
@@ -158,7 +158,7 @@ static createMessage = (req, res) => {
           };
           sent.push(newSent);
           fs.writeFileSync(
-            path.resolve(__dirname, "../data/sent.json"),
+            path.resolve(__dirname, '../data/sent.json'),
             JSON.stringify(sent, null, 2)
           );
 
@@ -168,7 +168,7 @@ static createMessage = (req, res) => {
           };
           inbox.push(newInbox);
           fs.writeFileSync(
-            path.resolve(__dirname, "../data/inbox.json"),
+            path.resolve(__dirname, '../data/inbox.json'),
             JSON.stringify(inbox, null, 2)
           );
 
@@ -202,7 +202,7 @@ static replyMessage = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
 
       } else {
@@ -217,9 +217,16 @@ static replyMessage = (req, res) => {
         if (parseInt(receiverInfo.id) === parseInt(userInfo.id)) {
           res.status(400).json({
             status: 400,
-            error: "The sender and receiver must not be the same"
+            error: 'The sender and receiver must not be the same',
           });
-        } else {
+        } 
+        else if (!receiverInfo){
+          res.status(400).json({
+            status: 400,
+            error: 'Receiver not found',
+          });
+        }
+        else {
           let replyMessageInfo = {
             id: messages.length + 1,
             senderId: userInfo.id,
@@ -227,12 +234,12 @@ static replyMessage = (req, res) => {
             subject,
             message,
             parentMessageId,
-            createdOn: moment().format("LL"),
+            createdOn: moment().format('LL'),
             status
           };
           messages.push(replyMessageInfo);
           fs.writeFileSync(
-            path.resolve(__dirname, "../data/messages.json"),
+            path.resolve(__dirname, '../data/messages.json'),
             JSON.stringify(messages, null, 2)
           );
           res.status(201).json({
@@ -250,7 +257,7 @@ static moveToTrash = (req, res) => {
       if (err) {
         res.status(403).json({
           status: 403,
-          error: "Forbidden"
+          error: 'Forbidden',
         });
       } else {
         let { messageId } = req.params;
@@ -277,7 +284,7 @@ static moveToTrash = (req, res) => {
         } else {
           res.status(404).json({
             status: 404,
-            error: "The message you're trying to delete is not found"
+            error: 'The message you are trying to delete is not found',
           });
         }
       }
@@ -285,7 +292,7 @@ static moveToTrash = (req, res) => {
   };
 
  static allRead = (req, res) => {
-    let read = messages.filter(message => message.status === "read");
+    let read = messages.filter(message => message.status === 'read');
     res.json({
       status: 200,
       data: read
@@ -293,7 +300,7 @@ static moveToTrash = (req, res) => {
   };
 
 static allUnread = (req, res) => {
-    let unread = messages.filter(message => message.status === "sent");
+    let unread = messages.filter(message => message.status === 'sent');
     res.json({
       status: 200,
       data: unread
@@ -301,7 +308,7 @@ static allUnread = (req, res) => {
 };
   
 static allDrafts = (req, res) => {
-    let allDrafts = messages.filter(message => message.status === "draft");
+    let allDrafts = messages.filter(message => message.status === 'draft');
     res.json({
       status: 200,
       data: allDrafts
