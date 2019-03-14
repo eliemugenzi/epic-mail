@@ -1,88 +1,82 @@
-import users from "../models/users";
-import jwt from "jsonwebtoken";
-import validateUser from "../helpers/validations/user";
-import path from "path";
-import fs from "fs";
+import users from '../models/users';
+import jwt from 'jsonwebtoken';
+import validateUser from '../helpers/validations/user';
+import path from 'path';
+import fs from 'fs';
 
 class AuthController {
   static register(req, res) {
-    let { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password } = req.body;
     const { error } = validateUser(req.body);
     if (error) {
       res.status(400).json({
         status: 400,
-        error: error.details[0].message
+        error: error.details[0].message,
       });
     }
-    let newUser = {
+    const newUser = {
       id: users.length + 1,
       firstname,
       lastname,
       email,
-      password
+      password,
     };
     users.push(newUser);
     fs.writeFileSync(
-      path.resolve(__dirname, "../data/messages.json"),
-      JSON.stringify(users, null, 2)
+      path.resolve(__dirname, '../data/users.json'),
+      JSON.stringify(users, null, 2),
     );
 
     jwt.sign(
       {
-        user: newUser
+        user: newUser,
       },
       process.env.SECRET_KEY,
       {
-        expiresIn: "2 days"
+        expiresIn: '2 days',
       },
       (err, token) => {
         res.status(201).json({
           status: 201,
-          data: newUser,
-          token
+          data: [{ token }],
         });
-      }
+      },
     );
   }
 
   static login(req, res) {
-    let { email, password } = req.body;
-    let credentials = { email, password };
+    const { email, password } = req.body;
+    const credentials = { email, password };
 
-    let userData = users.find(user => user.email === email);
+    const userData = users.find(user => user.email === email);
 
     if (userData) {
       if (userData.password === password) {
         jwt.sign(
           { user: credentials },
           process.env.SECRET_KEY,
-          { expiresIn: "2 days" },
+          { expiresIn: '2 days' },
           (err, token) => {
-            let context = {
+            const context = {
               status: 200,
-              token,
-              data: credentials
+              data: [{ token }],
             };
             res.json(context);
-          }
+          },
         );
       } else {
         res.json({
           status: 404,
-          error: "Invalid email and password combination"
+          error: 'Invalid email and password combination',
         });
       }
     } else {
       res.status(404).json({
         status: 404,
-        error: "This user not found"
+        error: 'This user is not found',
       });
     }
   }
 }
 
 export default AuthController;
-
-
-
-  

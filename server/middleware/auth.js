@@ -1,7 +1,7 @@
 const verifyToken = (req, res, next) => {
   const bearHeader = req.headers.authorization;
-  if (typeof bearHeader !== "undefined") {
-    const bearer = bearHeader.split(" ");
+  if (typeof bearHeader !== 'undefined') {
+    const bearer = bearHeader.split(' ');
     const bearerToken = bearer[1];
     req.token = bearerToken;
     next();
@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
     res
       .json({
         status: 403,
-        error: "Forbidden"
+        error: 'Forbidden',
       })
       .status(403);
   }

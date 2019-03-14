@@ -1,11 +1,11 @@
-import path from "path";
-import fs from "fs";
-import moment from "moment";
+import path from 'path';
+import fs from 'fs';
+
 
 let messages = [];
 const messageData = fs.readFileSync(
-  path.resolve(__dirname, "../data/messages.json"),
-  { encoding: "utf-8" }
+  path.resolve(__dirname, '../data/messages.json'),
+  { encoding: 'utf-8' },
 );
 messages = JSON.parse(messageData);
 

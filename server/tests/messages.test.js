@@ -7,8 +7,9 @@ import users from '../models/users';
 const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXhlbG1hbnppQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2In0sImlhdCI6MTU1MjU0NzIyMSwiZXhwIjoxNTUyNzIwMDIxfQ.UVQZDfGq75gC2oprAhThpVcnLZLoZD4WTHmg6MqG7zY';
 chai.use(chaiHttp);
-let should = chai.should();
-let expect = chai.expect;
+chai.should();
+const { expect } = chai;
+
 describe('Message Tests', () => {
   beforeEach((done) => {
     chai.request(app);
@@ -37,7 +38,6 @@ describe('MESSAGE TEST RESULTS', () => {
           user => user.email === 'eliemugenzi@gmail.com'
         );
         if (userInfo) expect(userInfo).to.be.an('object');
-        else expect(userInfo).to.be.undefined;
 
         const newMessage = messages.filter((message) => {
           if (
@@ -97,8 +97,7 @@ describe('MESSAGE TEST RESULTS', () => {
 
           const unreadMessages = messages.filter(
             message =>
-              message.status === 'sent' &&
-              parseInt(message.receiverId) === 1
+              (message.status === 'sent' && parseInt(message.receiverId, 10) === 1)
           );
           expect(unreadMessages).to.be.an('array');
         }
@@ -108,9 +107,7 @@ describe('MESSAGE TEST RESULTS', () => {
     done();
   });
   it('Should be able to create a new message', (done) => {
-    let newMessage = {
-      id: 5,
-      senderId: 1,
+    const newMessage = {
       receiverId: 3,
       subject: 'You\'re all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
@@ -128,12 +125,10 @@ describe('MESSAGE TEST RESULTS', () => {
         else {
           const userInfo = users.find(user => user.email === 'eliemugenzi@gmail.com');
           const receiverInfo = users.find(
-            user => parseInt(user.id) === 1
+            user => parseInt(user.id, 10) === 1
           );
           if (userInfo) expect(userInfo).to.be.an('object');
-          else expect(userInfo).to.be.undefined;
           if (receiverInfo) expect(receiverInfo).to.be.an('object');
-          else expect(receiverInfo).to.be.undefined;
           console.log(res.body)
           res.should.have.status(201);
         }
@@ -164,7 +159,7 @@ describe('MESSAGE TEST RESULTS', () => {
       .get('/api/v1/messages/draft/messages')
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
-        let allDrafts = messages.filter(
+        const allDrafts = messages.filter(
           message => message.status === 'draft'
         );
         expect(allDrafts).to.be.an('array');
@@ -173,7 +168,7 @@ describe('MESSAGE TEST RESULTS', () => {
       });
     done();
   });
-  it('should be able to get all read messages', done => {
+  it('should be able to get all read messages', (done) => {
     chai
       .request(app)
       .get('/api/v1/messages/read/messages')
@@ -182,7 +177,6 @@ describe('MESSAGE TEST RESULTS', () => {
           message => message.status === 'read'
         );
         if (read) expect(read).to.be.an('array');
-        else expect(read).to.be.undefined;
         res.should.have.status(200);
         res.body.should.be.an('object');
       });
@@ -190,7 +184,7 @@ describe('MESSAGE TEST RESULTS', () => {
   });
 
   it('Should reply to a message', (done) => {
-    let newMessage = {
+    const newMessage = {
       id: 5,
       senderId: 2,
       receiverId: 3,
@@ -216,19 +210,19 @@ describe('MESSAGE TEST RESULTS', () => {
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
 
-        let userInfo = users.find(
+        const userInfo = users.find(
           (user => user.email === 'eliemugenzi@gmail.com'
           )
         );
 
         if (userInfo) expect(userInfo).to.be.an('object');
-        else expect(userInfo).to.be.undefined;
+  
         
         const receiverInfo = users.find(
           user => parseInt(user.id, 10) === 2
         );
         if (receiverInfo) expect(receiverInfo).to.be.an('object');
-        else expect(receiverInfo).to.be.undefined;
+  
 
         res.should.have.status(200);
         res.body.should.be.an('object');
@@ -239,20 +233,20 @@ describe('MESSAGE TEST RESULTS', () => {
   it('Should get all saved messages by authorized user', (done) => {
     chai
       .request(app)
-      .get("/api/v1/messages/draft")
+      .get('/api/v1/messages/draft')
       .set('Authorization',`Bearer ${token}`)
       .end((err, res) => {
         
-        const allDrafts = messages.filter(message => message.senderId===1 && message.status === 'draft');
+        const allDrafts = messages.filter(message => message.senderId === 1 && message.status === 'draft');
         expect(allDrafts).to.be.an('array');
         
         const userInfo = users.find(user => user.email === 'inezairwanda@gmail.com');
         if (userInfo) expect(userInfo).to.be.a('object');
-        else expect(userInfo).to.be.undefined;
+    
         
 
         res.should.have.status(200);
-        res.body.should.be.an("object");
+        res.body.should.be.an('object');
       });
     done();
   });
@@ -268,15 +262,15 @@ describe('Message data testing', () => {
   it('Should filter messages by deleting the specific message', (done) => {
     const messageId = 1;
     const senderId = 1;
-    const filteredMessages = messages.filter(message => {
-      if (!(parseInt(message.id)===parseInt(messageId) && parseInt(message.senderId) === parseInt(senderId))) return message;
+    const filteredMessages = messages.filter((message) => {
+      if (!(parseInt(message.id, 10) === parseInt(messageId, 10) && parseInt(message.senderId, 10) === parseInt(senderId, 10))) return message;
     });
     expect(filteredMessages).to.be.an('array');
     done();
   });
 
   it('Should update a specific message status to draft', (done) => {
-    let draftMessages = messages.map((message) => {
+    const draftMessages = messages.map((message) => {
       if (message.id === 1) message.status = 'draft';
       return message;
     });
@@ -294,15 +288,11 @@ describe('Message data testing', () => {
   });
 
   it('Should get a message sent by a specific sender', (done) => {
-    const sentMessages = messages.filter(message => {
-      if (message.id === 1 && 1===message.senderId) return message;
+    const sentMessages = messages.filter((message) => {
+      if (message.id === 1 && 1 === message.senderId) return message;
     });
 
     expect(sentMessages).to.be.an('array');
     done();
-  })
-
- 
-
-
+  });
 });
