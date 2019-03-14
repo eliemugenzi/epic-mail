@@ -142,7 +142,7 @@ static createMessage = (req, res) => {
         });
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
-        let { receiverId, subject, message, status } = req.body;
+        let { receiverId, subject, message } = req.body;
         const receiverInfo = users.find(
           user => parseInt(user.id) === parseInt(receiverId)
         );
