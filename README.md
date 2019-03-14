@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/eliemugenzi/epic-mail.svg?branch=develop)](https://travis-ci.org/eliemugenzi/epic-mail)
 
-[![Coverage Status](https://coveralls.io/repos/github/eliemugenzi/epic-mail/badge.svg?branch=develop)](https://coveralls.io/github/eliemugenzi/epic-mail?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/eliemugenzi/epic-mail/badge.svg?branch=develop)](https://coveralls.io/github/eliemugenzi/epic-mail?branch=develop&kill_cache=1)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/368eba3147aeed2aaff9/maintainability)](https://codeclimate.com/github/eliemugenzi/epic-mail/maintainability)
 
@@ -11,6 +11,8 @@
 | Ressource URL                    | Methods | Description                 |
 | -------------------------------- | ------- | --------------------------- |
 | /                                | GET     | The index (welcome message) |
+/ api/v1/auth/signup               | POST    | Create an account           |
+| /api/v1/auth/login               | POST    | Login                       |
 | /api/v1/messages                 | GET     | Fetch all messages          |
 | /api/v1/messages/unread/messages | GET     | Fetch all unread messages   |
 | /api/v1/messages                 | POST    | Create a new message        |
