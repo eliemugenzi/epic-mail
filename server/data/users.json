@@ -26,5 +26,12 @@
     "lastname": "Manzi",
     "email": "cedmanzi@gmail.com",
     "password": "abc123@"
+  },
+  {
+    "id": 5,
+    "firstname": "Axel",
+    "lastname": "Zubee",
+    "email": "siraxel@epicmail.com",
+    "password": "123456"
   }
 ]

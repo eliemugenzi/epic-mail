@@ -197,6 +197,7 @@ describe('MESSAGE TEST RESULTS', () => {
       .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         res.should.have.status(201);
+        console.log(res.body);
         res.body.should.be.an('object');
       });
     done();
