@@ -192,7 +192,7 @@ describe('MESSAGE TEST RESULTS', () => {
     let newMessage = {
       id: 5,
       senderId: 2,
-      receiverId: 5,
+      receiverId: 3,
       subject: 'You are all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
     };

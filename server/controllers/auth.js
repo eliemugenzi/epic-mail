@@ -36,7 +36,7 @@ class AuthController {
         expiresIn: "2 days"
       },
       (err, token) => {
-        res.json({
+        res.status(201).json({
           status: 201,
           data: newUser,
           token

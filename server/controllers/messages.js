@@ -18,17 +18,10 @@ class MessageController{
 
         });
       } else {
-        if (messages.length) {
-          res.json({
-            status: 200,
-            data: messages
-          });
-        } else {
-          res.status(404).json({
-            status: 404,
-            error: "No messages yet"
-          });
-        }
+        res.json({
+          status: 200,
+          data: messages
+        });
       }
     });
   };
@@ -46,19 +39,10 @@ static sentMsg = (req, res) => {
         let userSent = messages.filter(
           message => parseInt(message.senderId) === parseInt(user.id)
         );
-        if (userSent) {
-          res.json({
-            status: 200,
-            data: userSent
-          });
-        } else {
-          res
-            .json({
-              status: 404,
-              error: "No sent messages found!"
-            })
-            .status(404);
-        }
+        res.json({
+          status: 200,
+          data: userSent
+        });
       }
     });
   };
@@ -84,17 +68,6 @@ static sentMsg = (req, res) => {
           }
         });
         if (newMessage) {
-          let newMessages = messages.map(message => {
-            if (parseInt(message.id) === parseInt(id)) {
-              message.status = "read";
-
-            }
-            return status;
-          });
-          fs.writeFileSync(
-            path.resolve(__dirname, "../data/messages.json"),
-            JSON.stringify(newMessages, null, 2)
-          );
           res.json({
             status: 200,
             data: newMessage
@@ -123,18 +96,11 @@ static sentMsg = (req, res) => {
             message.status === "sent" &&
             parseInt(message.receiverId) === parseInt(userInfo.id)
         );
-        if (unreadMessages.length) {
-          let context = {
-            status: 200,
-            data: unreadMessages
-          };
-          res.status(200).json(context);
-        } else {
-          res.status(400).json({
-            status: 400,
-            error: "No unread messages yet!"
-          });
-        }
+        let context = {
+          status: 200,
+          data: unreadMessages
+        };
+        res.status(200).json(context);
       }
     });
   };
@@ -157,18 +123,11 @@ static draft = (req, res) => {
           }
 
         });
-        if (draftMessages) {
-          let context = {
-            status: 200,
-            data: draftMessages
-          };
-          res.status(200).json(context);
-        } else {
-          res.status(400).json({
-            status: 400,
-            error: "No draft messages"
-          });
-        }
+        let context = {
+          status: 200,
+          data: draftMessages
+        };
+        res.status(200).json(context);
       }
     });
   };
@@ -227,6 +186,7 @@ static createMessage = (req, res) => {
 
 
           messages.push(newMessage);
+          fs.writeFileSync(path.resolve(__dirname, '../data/messages.json'), JSON.stringify(messages, null, 2));
           res.status(201).json({
             status: 201,
             data: [newMessage]
@@ -246,12 +206,14 @@ static replyMessage = (req, res) => {
         });
 
       } else {
-        let userInfo = users.find(user => email === userData.user.email);
+        let userInfo = users.find(user => user.email === userData.user.email);
         let { parentMessageId } = req.params;
         let { subject, message, receiverId, status } = req.body;
+        console.log(userData.user);
         let receiverInfo = users.find(
           user => parseInt(user.id) === parseInt(receiverId)
         );
+        console.log(receiverInfo);
         if (parseInt(receiverInfo.id) === parseInt(userInfo.id)) {
           res.status(400).json({
             status: 400,
@@ -273,7 +235,7 @@ static replyMessage = (req, res) => {
             path.resolve(__dirname, "../data/messages.json"),
             JSON.stringify(messages, null, 2)
           );
-          res.json({
+          res.status(201).json({
             status: 201,
             data: [replyMessageInfo]
           });
