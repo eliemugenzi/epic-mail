@@ -5,7 +5,7 @@ import messages from '../models/messages';
 import users from '../models/users';
 
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJFbGllIiwibGFzdG5hbWUiOiJNdWdlbnppIiwiZW1haWwiOiJlbGllbXVnZW56aUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImNyZWF0ZWRPbiI6Ik1hcmNoIDEzLCAyMDE5In0sImlhdCI6MTU1MjQ3MzMxMX0.xpjfqq1OfCf-3FKT2jBkkEZS2QLVcmUTaXdRCHJXSgI';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXhlbG1hbnppQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2In0sImlhdCI6MTU1MjU0NzIyMSwiZXhwIjoxNTUyNzIwMDIxfQ.UVQZDfGq75gC2oprAhThpVcnLZLoZD4WTHmg6MqG7zY';
 chai.use(chaiHttp);
 let should = chai.should();
 let expect = chai.expect;
@@ -111,7 +111,7 @@ describe('MESSAGE TEST RESULTS', () => {
     let newMessage = {
       id: 5,
       senderId: 1,
-      receiverId: 2,
+      receiverId: 3,
       subject: 'You\'re all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
       parentMessageId: 0
@@ -134,6 +134,7 @@ describe('MESSAGE TEST RESULTS', () => {
           else expect(userInfo).to.be.undefined;
           if (receiverInfo) expect(receiverInfo).to.be.an('object');
           else expect(receiverInfo).to.be.undefined;
+          console.log(res.body)
           res.should.have.status(201);
         }
         
@@ -192,7 +193,7 @@ describe('MESSAGE TEST RESULTS', () => {
     let newMessage = {
       id: 5,
       senderId: 2,
-      receiverId: 5,
+      receiverId: 3,
       subject: 'You are all set to the bootcamp',
       message: 'Welcome to the bootcamp,hope you will gain more from it.',
     };

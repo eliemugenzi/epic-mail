@@ -1,4 +1,4 @@
-[]
+
 [
     {
     "id":1,
@@ -12,6 +12,13 @@
   "firstname":"Axel",
   "lastname":"Manzi",
   "email":"axelmanzi@gmail.com",
+  "password":"123456"
+},
+{
+  "id":3,
+  "firstname":"Axel",
+  "lastname":"Zubee",
+  "email":"siraxel@epicmail.com",
   "password":"123456"
 }
 ]

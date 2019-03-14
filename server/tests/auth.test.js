@@ -22,11 +22,11 @@ describe('Auth Test results___', () => {
             firstname: 'Axel',
             lastname: 'Zubee',
             email: 'siraxel@epicmail.com',
-            password: '123456',
-            confirm: '123456'
+            password: '123456'
         }).end((err, res) => {
-            res.should.have.status(201);
             console.log(res.body);
+            res.should.have.status(201);
+           
             });
         done();
     })
