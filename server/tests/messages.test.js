@@ -256,6 +256,14 @@ describe('MESSAGE TEST RESULTS', () => {
     });
     done();
   });
+  it('/GET sent messages for everyone', (done) => {
+    chai.request(app).get('/api/v1/messages/sent/messages').end((err, res) => {
+      res.should.have.status(200);
+      const oneMessage = messages.filter(message => message.status ==='sent');
+      expect(oneMessage).to.be.an('array');
+    });
+    done();
+  });
 });
 
 describe('Message data testing', () => {

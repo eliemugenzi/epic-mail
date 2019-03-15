@@ -329,6 +329,14 @@ static allDrafts = (req, res) => {
       })
     }
   }
+  static allSent = (req, res) => {
+   
+    const oneMsg = messages.find(message => message.status==='sent');
+    res.json({
+      status: 200,
+      data: oneMsg
+    })
+  }
 
 }
 
