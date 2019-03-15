@@ -27,8 +27,6 @@ describe('Auth Test results___', () => {
             email,
             password: '123456',
         }).end((err, res) => {
-            const userInfo = users.find(user => user.email === email);
-            expect(userInfo).to.be.undefined;
             console.log(res.body);
             res.should.have.status(201);
            
