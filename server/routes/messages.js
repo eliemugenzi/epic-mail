@@ -17,5 +17,6 @@ router.delete('/:messageId', verifyToken, MessageController.moveToTrash);
 router.get('/unread/messages', MessageController.allUnread);
 router.get('/draft/messages', MessageController.allDrafts);
 router.get('/read/messages', MessageController.allRead);
+router.get('/public/:id', MessageController.singlePublicMsg);
 
 export default router;

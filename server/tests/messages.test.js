@@ -248,6 +248,14 @@ describe('MESSAGE TEST RESULTS', () => {
       });
     done();
   });
+  it('/GET single message for everyone', (done) => {
+    chai.request(app).get('/api/v1/messages/public/1').end((err, res) => {
+      res.should.have.status(200);
+      const oneMessage = messages.find(message => message.id === 1);
+      expect(oneMessage).to.be.an('object');
+    });
+    done();
+  });
 });
 
 describe('Message data testing', () => {

@@ -313,7 +313,25 @@ static allDrafts = (req, res) => {
       data: allDrafts
     });
   };
+  static singlePublicMsg = (req, res) => {
+    const { id } = req.params;
+    const oneMsg = messages.find(message => message.id === parseInt(id, 10));
+    if (oneMsg) {
+      res.json({
+        status: 200,
+        data:[oneMsg]
+      })
+    }
+    else {
+      res.status(404).json({
+        status: 404,
+        error:' This message is not found'
+      })
+    }
+  }
 
 }
+
+
 export default MessageController;
 

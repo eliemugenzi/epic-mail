@@ -22,6 +22,7 @@
 | /api/v1/users                    | GET     | Get all contacts            |
 | /api/v1/users/:id                | GET     | Get a specific contact      |
 | /api/v1/messages/:id             | GET     | Get a single message        |
+| /api/v1/messages/public/:id      | GET     | Get a single message for everyone
 
 ## Tools Used
 
