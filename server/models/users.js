@@ -2,11 +2,41 @@ import path from 'path';
 import fs from 'fs';
 
 
-let users = [];
-const userData = fs.readFileSync(
-  path.resolve(__dirname, '../data/users.json'),
-  { encoding: 'utf-8' },
-);
-
-users = JSON.parse(userData);
+let users = [
+  {
+    id: 1,
+    firstname: "Elie",
+    lastname: "Mugenzi",
+    email: "eliemugenzi@gmail.com",
+    password: "123456"
+  },
+  {
+    id: 2,
+    firstname: "Axel",
+    lastname: "Manzi",
+    email: "axelmanzi@gmail.com",
+    password: "123456"
+  },
+  {
+    id: 3,
+    firstname: "Axel",
+    lastname: "Zubee",
+    email: "siraxel@epicmail.com",
+    password: "123456"
+  },
+  {
+    id: 4,
+    firstname: "Cedrick",
+    lastname: "Manzi",
+    email: "cedmanzi@gmail.com",
+    password: "abc123@"
+  },
+  {
+    id: 5,
+    firstname: "Axel",
+    lastname: "Zubee",
+    email: "siraxel@epicmail.com",
+    password: "123456"
+  }
+];
 export default users;

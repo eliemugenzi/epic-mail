@@ -157,20 +157,14 @@ static createMessage = (req, res) => {
             messageId: messages.length + 1
           };
           sent.push(newSent);
-          fs.writeFileSync(
-            path.resolve(__dirname, '../data/sent.json'),
-            JSON.stringify(sent, null, 2)
-          );
+         
 
           let newInbox = {
             receiverId: parseInt(receiverId),
             messageId: messages.length + 1
           };
           inbox.push(newInbox);
-          fs.writeFileSync(
-            path.resolve(__dirname, '../data/inbox.json'),
-            JSON.stringify(inbox, null, 2)
-          );
+         
 
 
           let newMessage = {
@@ -186,7 +180,6 @@ static createMessage = (req, res) => {
 
 
           messages.push(newMessage);
-          fs.writeFileSync(path.resolve(__dirname, '../data/messages.json'), JSON.stringify(messages, null, 2));
           res.status(201).json({
             status: 201,
             data: [newMessage]
