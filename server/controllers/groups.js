@@ -45,10 +45,6 @@ class GroupController {
           name,
         };
         groups.push(newGroup);
-        fs.writeFileSync(
-          path.resolve(__dirname, '../data/groups.json'),
-          JSON.stringify(groups, null, 2),
-        );
         res
           .json({
             status: 201,
@@ -77,10 +73,7 @@ class GroupController {
 
         groupMembers.push(groupMember);
 
-        fs.writeFileSync(
-          path.resolve(__dirname, '../data/group-members.json'),
-          JSON.stringify(groupMembers, null, 2),
-        );
+       
 
         const currentGroup = groups.find(
           group => parseInt(group.id, 10) === parseInt(groupId, 10),

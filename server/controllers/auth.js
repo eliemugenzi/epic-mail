@@ -28,10 +28,7 @@ class AuthController {
       password,
     };
     users.push(newUser);
-    fs.writeFileSync(
-      path.resolve(__dirname, '../data/users.json'),
-      JSON.stringify(users, null, 2),
-    );
+    
 
     jwt.sign(
       {
