@@ -61,3 +61,12 @@ describe('User data tests', () => {
     done();
   });
 });
+
+describe('404 Endpoint tests', () => {
+  it('Should get a 404 response', (done) => {
+    chai.request(app).get('*').end((err, res) => {
+      res.should.have.status(404);
+    });
+    done();
+  });
+});
