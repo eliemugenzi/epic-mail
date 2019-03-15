@@ -114,7 +114,7 @@ static draft = (req, res) => {
         });
       } else {
         const userInfo = users.find(user => user.email === userData.user.email);
-        const draftMessages = messages.map(message => {
+        const draftMessages = messages.filter(message => {
           if (
             parseInt(message.senderId) === parseInt(userInfo.id) &&
             message.status === 'draft'
