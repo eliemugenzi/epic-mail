@@ -37,7 +37,7 @@ static sentMsg = (req, res) => {
         let user = users.find(user => user.email === userData.user.email);
         //let userSent = Message.findAllSentBySender({ senderId: user.id });
         let userSent = messages.filter(
-          message => parseInt(message.senderId) === parseInt(user.id)
+          message => parseInt(message.senderId) === parseInt(user.id) && message.status==='sent'
         );
         res.json({
           status: 200,
