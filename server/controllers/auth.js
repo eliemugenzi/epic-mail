@@ -2,12 +2,24 @@
 import jwt from 'jsonwebtoken';
 import path from 'path';
 import fs from 'fs';
-import validateUser from '../helpers/validations/user';
 import users from '../models/users';
 
 class AuthController {
   static register(req, res) {
-    const { firstname, lastname, email, password } = req.body;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+    } = req.body;
+    const userInfo = users.find(user => user.email === email);
+    if (userInfo) {
+      res.status(400).json({
+        status: 400,
+        error: 'The user with this email already exists',
+      });
+      return;
+    }
     const newUser = {
       id: users.length + 1,
       firstname,
