@@ -272,6 +272,65 @@ static createMessage = (req, res) => {
     });
   };
 
+  static allRead = (req, res) => {
+    const sql = "SELECT * FROM messages WHERE status='read'";
+    Db.query(sql).then((result) => {
+      res.json({
+        status: 200,
+        data: result.rows,
+      });
+    });
+  };
+
+static allUnread = (req, res) => {
+    const sql = "SELECT * FROM messages WHERE status='sent'";
+    Db.query(sql).then((result) => {
+      res.json({
+        status: 200,
+        data: result.rows,
+      })
+    })
+  };
+  
+static allDrafts = (req, res) => {
+    const sql = "SELECT * FROM messages WHERE status='draft'";
+    Db.query(sql).then((result) => {
+      res.json({
+        status: 200,
+        data: result.rows,
+      });
+    });
+
+  };
+  static singlePublicMsg = (req, res) => {
+    const { id } = req.params;
+    const sql = `SELECT * FROM messages WHERE id='${id}'`;
+    Db.query(sql).then((result) => {
+      if (result.rows.length) {
+        res.json({
+          status: 200,
+          data: result.rows,
+        });
+      }
+      else {
+        res.status(404).json({
+          status: 404,
+          error: "Sorry, we can't find the message",
+        });
+      }
+    });
+  }
+  static allSent = (req, res) => {
+    const sql = "SELECT * FROM messages WHERE status='sent'";
+    Db.query(sql).then((result) => {
+      res.json({
+        status: 200,
+        data: result.rows,
+      });
+    });
+
+  }
+
 };
 
 
