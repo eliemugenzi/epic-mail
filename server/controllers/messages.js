@@ -79,6 +79,31 @@ static message = (req, res) => {
     });
   };
 
+   static unread = (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
+      if (err) {
+        res.status(403).json({
+          status: 403,
+          error: 'Forbidden',
+        });
+      } else {
+        const sql1 = `SELECT * FROM users WHERE email='${userData.user.email}'`;
+        Db.query(sql1).then((result) => {
+          if (result.rows.length) {
+            const sql2 = `SELECT * FROM messages WHERE receiverId='${result.rows[0].id}' AND status='sent'`;
+            Db.query(sql2).then((result) => {
+              if (result.rows.length) {
+                res.json({
+                  status: 200,
+                  data: result.rows,
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  };
 };
 
 
