@@ -28,33 +28,7 @@ class MessageController {
       }
     });
   };
-}
 
-static message = (req, res) => {
-  let { id } = req.params;
-  jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
-    if (err) {
-      res.status(403).json({
-        status: 403,
-        error: 'Forbidden',
-      });
-
-    } else {
-      const sql1 = `SELECT * FROM users WHERE email='${userData.user.email}'`;
-      Db.query(sql1).then((result) => {
-        if (result.rows.length) {
-          const sql2 = `SELECT * FROM messages WHERE senderId='${result.rows[0].id}'`;
-          Db.query(sql2).then((result) => {
-            res.json({
-              status: 200,
-              data: result.rows,
-            });
-          });
-        }
-      });
-    }
-  });
-  
   static sentMsg = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -79,7 +53,34 @@ static message = (req, res) => {
     });
   };
 
-   static unread = (req, res) => {
+
+  static message = (req, res) => {
+    let { id } = req.params;
+    jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
+      if (err) {
+        res.status(403).json({
+          status: 403,
+          error: 'Forbidden',
+        });
+
+      } else {
+        const sql1 = `SELECT * FROM users WHERE email='${userData.user.email}'`;
+        Db.query(sql1).then((result) => {
+          if (result.rows.length) {
+            const sql2 = `SELECT * FROM messages WHERE senderId='${result.rows[0].id}'`;
+            Db.query(sql2).then((result) => {
+              res.json({
+                status: 200,
+                data: result.rows,
+              });
+            });
+          }
+        });
+      }
+    });
+  };
+
+  static unread = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -103,8 +104,8 @@ static message = (req, res) => {
         });
       }
     });
-   };
-  
+  };
+
   static draft = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -128,7 +129,9 @@ static message = (req, res) => {
       }
     });
   };
-static createMessage = (req, res) => {
+
+
+  static createMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
         res.status(403).json({
@@ -180,7 +183,8 @@ static createMessage = (req, res) => {
       }
     });
   };
-  
+
+
   static replyMessage = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -236,6 +240,7 @@ static createMessage = (req, res) => {
     });
   };
 
+
   static moveToTrash = (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
       if (err) {
@@ -282,7 +287,7 @@ static createMessage = (req, res) => {
     });
   };
 
-static allUnread = (req, res) => {
+  static allUnread = (req, res) => {
     const sql = "SELECT * FROM messages WHERE status='sent'";
     Db.query(sql).then((result) => {
       res.json({
@@ -291,8 +296,8 @@ static allUnread = (req, res) => {
       })
     })
   };
-  
-static allDrafts = (req, res) => {
+
+  static allDrafts = (req, res) => {
     const sql = "SELECT * FROM messages WHERE status='draft'";
     Db.query(sql).then((result) => {
       res.json({
@@ -331,7 +336,7 @@ static allDrafts = (req, res) => {
 
   }
 
-};
+}
 
 
 export default MessageController;
