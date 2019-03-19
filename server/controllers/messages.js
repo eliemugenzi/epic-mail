@@ -103,7 +103,33 @@ static message = (req, res) => {
         });
       }
     });
+   };
+  
+  static draft = (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
+      if (err) {
+        res.status(403).json({
+          status: 403,
+          error: 'Forbidden',
+        });
+      } else {
+        const sql1 = `SELECT * FROM users WHERE email='${userData.user.email}'`;
+        Db.query(sql1).then((result) => {
+          if (result.rows.length) {
+            const sql2 = `SELECT * FROM messages WHERE status='draft' AND senderId='${result.rows[0].id}'`;
+            Db.query(sql2).then((result) => {
+              res.json({
+                status: 200,
+                data: result.rows,
+              });
+            });
+          }
+        });
+      }
+    });
   };
+
+  
 };
 
 
