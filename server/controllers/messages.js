@@ -181,6 +181,60 @@ static createMessage = (req, res) => {
     });
   };
   
+  static replyMessage = (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
+      if (err) {
+        res.status(403).json({
+          status: 403,
+          error: 'Forbidden',
+        });
+
+      } else {
+        let { parentMessageId } = req.params;
+        let { subject, message, receiverId } = req.body;
+        const userSql = `SELECT * FROM users WHERE email='${userData.user.email}'`;
+        Db.query(userSql).then((result) => {
+          if (result.rows.length) {
+            const senderId = result.rows[0].id;
+            if (receiverId === result.rows[0].id) {
+              res.status(400).json({
+                status: 400,
+                error: "Oops, are you trying to send it to yourself?",
+              });
+              return;
+            }
+            const sql2 = `SELECT * FROM messages WHERE id='${receiverId}'`;
+            Db.query(sql2).then((result) => {
+              if (result.rows.length) {
+                let newMessage = [
+                  senderId,
+                  receiverId,
+                  subject,
+                  message,
+                  parentMessageId,
+                  "sent",
+                  new Date(),
+                ];
+                const sql3 = "INSERT INTO messages(senderId,receiverId,subject,message,parentMessageId,status,createdOn) VALUES($1,$2,$3,$4,$5,$6,$7)";
+                Db.query(sql3, newMessage).then(() => {
+                  res.status(201).json({
+                    status: 201,
+                    success: "Replied!"
+                  });
+                })
+              }
+              else {
+                res.status(400).json({
+                  status: 400,
+                  error: "The receiver is not found"
+                })
+              }
+            })
+          }
+        });
+      }
+    });
+  };
 };
 
 
