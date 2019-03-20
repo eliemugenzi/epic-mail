@@ -1,23 +1,22 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../../app';
-import messages from '../models/messages';
-import users from '../models/users';
+import chai from "chai";
+import chaiHttp from "chai-http";
+import app from "../../app";
+import messages from "../models/messages";
+import users from "../models/users";
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXhlbG1hbnppQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2In0sImlhdCI6MTU1MjU0NzIyMSwiZXhwIjoxNTUyNzIwMDIxfQ.UVQZDfGq75gC2oprAhThpVcnLZLoZD4WTHmg6MqG7zY';
+const token = process.env.JWT_KEY;
 chai.use(chaiHttp);
 chai.should();
 const { expect } = chai;
 
-describe('Message Tests', () => {
+describe("Message Tests", () => {
   beforeEach((done) => {
     chai.request(app);
   });
 });
 
-describe('MESSAGE TEST RESULTS', () => {
-  it('Should get all the messages', (done) => {
+describe("MESSAGE TEST RESULTS", () => {
+  it("Should get all the messages", (done) => {
     chai
       .request(app)
       .get('/api/v1/messages')
