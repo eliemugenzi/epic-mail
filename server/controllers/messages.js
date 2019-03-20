@@ -235,6 +235,43 @@ static createMessage = (req, res) => {
       }
     });
   };
+
+  static moveToTrash = (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (err, userData) => {
+      if (err) {
+        res.status(403).json({
+          status: 403,
+          error: 'Forbidden',
+        });
+      } else {
+        let { messageId } = req.params;
+        const sql1 = `SELECT * FROM users WHERE email='${userData.user.email}'`;
+        Db.query(sql1).then((result) => {
+          if (result.rows) {
+            const sql2 = `SELECT * FROM messages WHERE id='${messageId}' AND senderId='${result.rows[0].id}'`;
+            Db.query(sql2).then((result) => {
+              if (result.rows.length) {
+                const sql3 = `DELETE FROM messages WHERE id=${messageId} AND senderId='${result.rows[0].id}'`;
+                Db.query(sql3).then(() => {
+                  res.json({
+                    status: 200,
+                    success: "Deleted successfully",
+                  });
+                })
+              }
+              else {
+                res.status(404).json({
+                  status: 404,
+                  error: "The message does not exist or it is not yours",
+                });
+              }
+            })
+          }
+        });
+      }
+    });
+  };
+
 };
 
 
