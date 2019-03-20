@@ -1,13 +1,11 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 const validateUser = (user) => {
   const schema = Joi.object().keys({
     firstname: Joi.string()
-      .alphanum()
       .max(30)
       .required(),
     lastname: Joi.string()
-      .alphanum()
       .max(30)
       .required(),
     email: Joi.string()

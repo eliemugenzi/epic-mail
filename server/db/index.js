@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY,
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
-    email VARCHAR(30) UNIQUE,
-    password VARCHAR(30) NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    password VARCHAR(500) NOT NULL,
     createdOn DATE NOT NULL
 )
     `;
