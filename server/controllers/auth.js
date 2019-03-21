@@ -31,11 +31,9 @@ class AuthController {
             const sql2 = "INSERT INTO users(firstname,lastname,email,password,createdon) VALUES($1,$2,$3,$4,$5) RETURNING *";
             Db.query(sql2, newUser).then((result) => {
                 console.log(result.rows);
-                jwt.sign({ user: { email, password } }, process.env.SECRET_KEY, (err, token) => {
-                    res.status(201).json({
-                        status: 201,
-                        data: [{ token }],
-                    });
+                res.status(201).json({
+                    status: 201,
+                    data: result.rows,
                 });
             });
         });
@@ -54,7 +52,7 @@ class AuthController {
                     jwt.sign(
                         { user: credentials },
                         process.env.SECRET_KEY,
-                        { expiresIn: "2 days" },
+                        { expiresIn: "5 days" },
                         (err, token) => {
                             const context = {
                                 status: 200,
