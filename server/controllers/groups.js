@@ -87,17 +87,27 @@ class GroupController {
                             error: "You are not allowed to add a member",
                         });
                     }
-                    const sql4 = "INSERT INTO group_members(groupId,memberId,role) VALUES($1,$2,$3) RETURNING *";
-                    const member = [
-                        groupId,
-                        memberId,
-                        "user",
-                    ];
-                    Db.query(sql4, member).then((result) => {
-                        res.status(201).json({
-                            status: 201,
-                            data: result.rows,
-                        });
+                    const sqlx = `SELECT * FROM group_members WHERE groupId='${groupId}' AND memberId='${memberId}'`;
+                    Db.query(sqlx).then((result) => {
+                        if (result.rows.length) {
+                            res.status(400).json({
+                                status: 400,
+                                error: "This user already exists",
+                            });
+                        } else {
+                            const sql4 = "INSERT INTO group_members(groupId,memberId,role) VALUES($1,$2,$3) RETURNING *";
+                            const member = [
+                                groupId,
+                                memberId,
+                                "user",
+                            ];
+                            Db.query(sql4, member).then((result) => {
+                                res.status(201).json({
+                                    status: 201,
+                                    data: result.rows,
+                                });
+                            });
+                        }
                     });
                 });
             });
@@ -164,7 +174,7 @@ class GroupController {
                         error: "This group does not exist",
                     });
                 }
-                const sql3 = `SELECT * FROM group_members WHERE groupId='${groupId}'`;
+                const sql3 = `SELECT * FROM group_members WHERE memberId='${memberId}' AND groupId='${groupId}'`;
                 Db.query(sql3).then((result) => {
                     if (!result.rows.length) {
                         return res.status(404).json({
@@ -172,7 +182,7 @@ class GroupController {
                             error: "The group member you are trying to delete is not found",
                         });
                     }
-                    const sql4 = `SELECT * FROM groups WHERE createdBy='${userId}'`;
+                    const sql4 = `SELECT * FROM groups WHERE createdBy='${userId}' AND id='${groupId}'`;
                     Db.query(sql4).then((result) => {
                         if (!result.rows.length) {
                             return res.status(400).json({
