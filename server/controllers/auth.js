@@ -1,7 +1,6 @@
 
 import jwt from "jsonwebtoken";
-import User from "../models/users";
-import bcrypt from "bcryptjs";
+import HashHelper from "../helpers/hash.helper";
 import Db from "../db";
 class AuthController {
 
@@ -21,12 +20,12 @@ class AuthController {
           error: "The user with this email already exists",
         });
       }
-
+      console.log(HashHelper.hashPassword(password));
       const newUser = [
         firstname,
         lastname,
         email,
-        password,
+        HashHelper.hashPassword(password),
         new Date(),
       ];
       const sql2 = "INSERT INTO users(firstname,lastname,email,password,createdon) VALUES($1,$2,$3,$4,$5) RETURNING *";
@@ -53,7 +52,7 @@ class AuthController {
       if (result.rows.length) {
         console.log(result.rows[0].password);
         console.log(password);
-        if (result.rows[0].password === password) {
+        if (HashHelper.comparePassword(password, result.rows[0].password)) {
           jwt.sign(
             { user: credentials },
             process.env.SECRET_KEY,
