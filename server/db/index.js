@@ -1,9 +1,21 @@
-import { Pool } from "pg";
+import pg, { Pool } from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
+pg.defaults.ssl = true;
 
-const poolOptions = process.env.DATABASE_URL;
+let poolOptions;
+if (process.env.DATABASE_URL) {
+    poolOptions = process.env.DATABASE_URL;
+} else {
+    poolOptions = {
+        user: process.env.PGUSER,
+        host: process.env.PGHOST,
+        database: process.env.PGDB,
+        password: process.env.PGPASS,
+    };
+}
+
 class Db {
     constructor() {
         this.pool = new Pool(poolOptions);
