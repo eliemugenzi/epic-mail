@@ -23,11 +23,11 @@ app.use(logger("dev"));
 app.get("/", (req, res) => res.json({ message: "Hello world" }));
 
 // Routers middleware config
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/messages", messageRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/contacts", contactRouter);
-app.use("/api/v1/groups", groupRouter);
+app.use("/api/v2/auth", authRouter);
+app.use("/api/v2/messages", messageRouter);
+app.use("/api/v2/users", userRouter);
+app.use("/api/v2/contacts", contactRouter);
+app.use("/api/v2/groups", groupRouter);
 
 app.get("*", (req, res) => res.status(404).json({ status: 404, error: "404 not found" }));
 const PORT = process.env.PORT || 3000;

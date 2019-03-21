@@ -3,12 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const poolOptions = {
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDB,
-    password: process.env.PGPASS,
-};
+const poolOptions = process.env.DATABASE_URL;
 class Db {
     constructor() {
         this.pool = new Pool(poolOptions);
