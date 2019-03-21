@@ -32,7 +32,7 @@ app.use("/api/v1/groups", groupRouter);
 app.get("*", (req, res) => res.status(404).json({ status: 404, error: "404 not found" }));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  /* eslint-disable-next-line */
+    /* eslint-disable-next-line */
   console.log(`Server is running on port ${PORT}`);
 });
 
