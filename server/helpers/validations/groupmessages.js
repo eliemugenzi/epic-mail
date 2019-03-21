@@ -1,8 +1,7 @@
 import Joi from "joi";
 
 const validateGrpMsg = (message) => {
-    const schema = Joi.objects().keys({
-        groupId: Joi.number().integer().required(),
+    const schema = Joi.object().keys({
         subject: Joi.string().required(),
         message: Joi.string().required(),
     });

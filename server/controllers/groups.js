@@ -269,6 +269,62 @@ class GroupController {
             });
         });
     }
+
+    static viewGroupMessages = (req, res) => {
+        const { groupId } = req.params;
+        const sql = `SELECT * FROM users WHERE email='${req.user.email}'`;
+        Db.query(sql).then((result) => {
+            const userId = result.rows[0].id;
+            const sql2 = `SELECT * FROM group_members WHERE memberId='${userId}'`;
+            Db.query(sql2).then((result) => {
+                if (!result.rows.length) {
+                    return res.status(400).json({
+                        status: 400,
+                        error: "You are not a member of this group"
+                    });
+                }
+                const sql3 = `SELECT * FROM group_messages WHERE groupId='${groupId}'`;
+                Db.query(sql3).then((result) => {
+                    res.json({
+                        status: 200,
+                        data: result.rows
+                    });
+                });
+            });
+        });
+    }
+
+    static singleGroupMessage = (req, res) => {
+        const { groupId, messageId } = req.params;
+        const sql = `SELECT * FROM users WHERE email='${
+          req.user.email
+        }'`;
+        Db.query(sql).then(result => {
+          const userId = result.rows[0].id;
+          const sql2 = `SELECT * FROM group_members WHERE memberId='${userId}'`;
+          Db.query(sql2).then(result => {
+            if (!result.rows.length) {
+              return res.status(400).json({
+                status: 400,
+                error: "You are not a member of this group"
+              });
+            }
+            const sql3 = `SELECT * FROM group_messages WHERE groupId='${groupId}' AND id='${messageId}'`;
+              Db.query(sql3).then((result) => {
+                  if (!result.rows.length) {
+                      res.status(404).json({
+                          status: 404,
+                          error: "This message is not found!"
+                      });
+                  }
+              res.json({
+                status: 200,
+                data: result.rows
+              });
+            });
+          });
+        });
+    }
 }
 
 export default GroupController;

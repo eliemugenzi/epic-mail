@@ -11,10 +11,10 @@ router.get("/sent", verifyToken, MessageController.sentMsg);
 router.get("/draft", verifyToken, MessageController.draft);
 router.get("/:id", verifyToken, MessageController.message);
 router.post(
-  "/reply/:messageId",
-  verifyToken,
-  messageValidate,
-  MessageController.replyMessage,
+    "/reply/:messageId",
+    verifyToken,
+    messageValidate,
+    MessageController.replyMessage,
 );
 
 router.post("/", verifyToken, messageValidate, MessageController.createMessage);
@@ -24,5 +24,6 @@ router.get("/draft/messages", MessageController.allDrafts);
 router.get("/sent/messages", MessageController.allSent);
 router.get("/read/messages", MessageController.allRead);
 router.get("/public/:id", MessageController.singlePublicMsg);
+router.get("/read", verifyToken, MessageController.read);
 
 export default router;

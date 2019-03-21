@@ -3,7 +3,7 @@ import Joi from "joi";
 
 const validateMember = (object) => {
     const memberSchema = Joi.object().keys({
-        memberId: Joi.nuumber().integer().required(),
+        memberId: Joi.number().integer().required(),
     });
     return Joi.validate(object, memberSchema);
 };
