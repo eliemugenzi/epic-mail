@@ -31,10 +31,12 @@ class AuthController {
             const sql2 = "INSERT INTO users(firstname,lastname,email,password,createdon) VALUES($1,$2,$3,$4,$5) RETURNING *";
             Db.query(sql2, newUser).then((result) => {
                 console.log(result.rows);
-                res.status(201).json({
-                    status: 201,
-                    data: result.rows,
-                });
+                jwt.sign({ user: { email, password } }, process.emit.SECRET_KEY, { expiresIn: "5 days" }, (err, token) => {
+                    res.status(201).json({
+                        status: 201,
+                        data: [{ token }],
+                    });
+                }); 
             });
         });
     }
