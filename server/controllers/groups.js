@@ -136,11 +136,11 @@ class GroupController {
                                     "sent",
                                     new Date(),
                                 ];
-                                const sql = "INSERT INTO group_messages(senderId,groupId,subject,message,status,createdOn) VALUES($1,$2,$3,$4,$5,$6)";
-                                Db.query(sql, newMessage).then(() => {
+                                const sql = "INSERT INTO group_messages(senderId,groupId,subject,message,status,createdOn) VALUES($1,$2,$3,$4,$5,$6) RETURNING *";
+                                Db.query(sql, newMessage).then((result) => {
                                     res.status(201).json({
                                         status: 201,
-                                        success: "Message sent to the group",
+                                        data:result.rows,
                                     });
                                 });
                             } else {
