@@ -90,7 +90,7 @@ export const nameValidate = (req, res, next) => {
 };
 
 export const loginValidate = (req, res, next) => {
-    const { error } = groupNameValidation(req.body);
+    const { error } = validateLogin(req.body);
     if (error) {
         return res.status(400).json({
             status: 400,
