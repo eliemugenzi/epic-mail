@@ -6,7 +6,7 @@ pg.defaults.ssl = true;
 
 let poolOptions;
 if (process.env.DATABASE_URL) {
-    poolOptions = process.env.DATABASE_URL;
+    poolOptions = { connectionString: process.env.DATABASE_URL };
 } else {
     poolOptions = {
         user: process.env.PGUSER,
