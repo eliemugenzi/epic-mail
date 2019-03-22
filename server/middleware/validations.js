@@ -4,6 +4,7 @@ import validateGrpMsg from "../helpers/validations/groupmessages";
 import validateGroup from "../helpers/validations/groups.validations";
 import validateMember from "../helpers/validations/member.validations";
 import groupNameValidation from "../helpers/validations/groupName.validations";
+import validateLogin from "../helpers/validations/login.validations";
 
 export const userValidate = (req, res, next) => {
     const { error } = validateUser(req.body);
@@ -78,6 +79,17 @@ export const memberValidate = (req, res, next) => {
 };
 
 export const nameValidate = (req, res, next) => {
+    const { error } = groupNameValidation(req.body);
+    if (error) {
+        return res.status(400).json({
+            status: 400,
+            error: error.details[0].message.replace(/[$\/\\#,+()$~%.'":*<>{}]/g, ""),
+        });
+    }
+    next();
+};
+
+export const loginValidate = (req, res, next) => {
     const { error } = groupNameValidation(req.body);
     if (error) {
         return res.status(400).json({
