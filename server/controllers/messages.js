@@ -44,13 +44,23 @@ class MessageController {
       if (result.rows.length) {
         const sql2 = `SELECT * FROM messages WHERE receiverId='${result.rows[0].id}' AND id='${id}'`;
         Db.query(sql2).then((result) => {
-          const sql3 = `UPDATE messages SET status='read' WHERE id='${result.rows[0].id}' RETURNING *`;
-          Db.query(sql3).then((result) => {
+          console.log(result.rows);
+          if (result.rows.length) {
+            const sql3 = `UPDATE messages SET status='read' WHERE id='${result.rows[0].id}' RETURNING *`;
+            Db.query(sql3).then((result) => {
+              res.json({
+                status: 200,
+                data: result.rows,
+              });
+            })
+          }
+          else {
             res.json({
               status: 200,
-              data: result.rows,
-            });
-          })
+              data:result.rows
+            })
+          }
+          
           
         });
       }
@@ -90,28 +100,7 @@ class MessageController {
 
 
   static createMessage = (req, res) => {
-    emailExistence.check('yndagijimanna@gmail.com', (response, error) => {
-      if (error) console.log(error);
-      if (response) console.log(response);
-    })
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.GMAIL_USER, // generated ethereal user
-        pass: process.env.GMAIL_PASS // generated ethereal password
-      }
-    });
-    const mailOptions = {
-      from: "eliemugenzi@gmail.com",
-      to: "yndagijimana@gmail.com",
-      subject: "Hello",
-      text: "Hello world Yves"
-    };
-    transporter.sendMail(mailOptions);
-
-
+  
     const { receiverId, subject, message } = req.body;
     const sql1 = `SELECT * FROM users WHERE email='${req.user.email}'`;
     Db.query(sql1).then((result) => {
