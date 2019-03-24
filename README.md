@@ -7,19 +7,26 @@
 | Ressource URL                    | Methods | Description                 |
 | -------------------------------- | ------- | --------------------------- |
 | /                                | GET     | The index (welcome message) |
-/ api/v1/auth/signup               | POST    | Create an account           |
-| /api/v1/auth/login               | POST    | Login                       |
-| /api/v1/messages                 | GET     | Fetch all messages          |
-| /api/v1/messages/unread/messages | GET     | Fetch all unread messages   |
-| /api/v1/messages                 | POST    | Create a new message        |
-| /api/v1/messages/:id             | DELETE  | Delete a specific message   |
-| /api/v1/messages/read/messages   | GET     | GET all read messages       |
-| /api/v1/messages/draft/messages  | GET     | GET all draft messages      |
-| /api/v1/users                    | GET     | Get all contacts            |
-| /api/v1/users/:id                | GET     | Get a specific contact      |
-| /api/v1/messages/:id             | GET     | Get a single message        |
-| /api/v1/messages/public/:id      | GET     | Get a single message for everyone
-| /api/v1/messages/sent/messages   | GET     | Get a sent messages
+/ api/v2/auth/signup               | POST    | Create an account           |
+| /api/v2/auth/login               | POST    | Login                       |
+| /api/v2/messages                 | GET     | Fetch all messages          |
+| /api/v2/messages/unread/messages | GET     | Fetch all unread messages   |
+| /api/v2/messages                 | POST    | Create a new message        |
+| /api/v2/messages/:id             | DELETE  | Delete a specific message   |
+| /api/v2/messages/read/messages   | GET     | GET all read messages       |
+| /api/v2/messages/draft/messages  | GET     | GET all draft messages      |
+| /api/v2/users                    | GET     | Get all contacts            |
+| /api/v2/users/:id                | GET     | Get a specific contact      |
+| /api/v2/messages/:id             | GET     | Get a single message        |
+| /api/v2/messages/public/:id      | GET     | Get a single message for everyone
+| /api/v2/messages/sent/messages   | GET     | Get a sent messages
+| /api/v2/groups                   | GET     | Get al groups                |
+| /api/v2/groups/:id               | GET     | Get one group                |
+| /api/v2/groups                   | POST    | Create a group               |
+| /api/v2/groups/:id/users         | POST    | Add a user to the group      |
+| /api/v2/groups/:id               | PATCH   | Edit group name              |
+| /api/v2/groups/:id               | DELETE  | Delete a group               |
+| /api/v2/groups/:grpId/users/:id  | DELETE  | Delete a user from a group   |
 
 ## Tools Used
 
