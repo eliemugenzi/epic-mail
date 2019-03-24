@@ -1,10 +1,6 @@
 ### Epic Mail
 
-[![Build Status](https://travis-ci.org/eliemugenzi/epic-mail.svg?branch=develop)](https://travis-ci.org/eliemugenzi/epic-mail)
-
-[![Coverage Status](https://coveralls.io/repos/github/eliemugenzi/epic-mail/badge.svg?branch=develop&kill_cache=1)](https://coveralls.io/github/eliemugenzi/epic-mail?branch=develop)
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/368eba3147aeed2aaff9/maintainability)](https://codeclimate.com/github/eliemugenzi/epic-mail/maintainability)
+[![Build Status](https://travis-ci.org/eliemugenzi/epic-mail.svg?branch=develop)](https://travis-ci.org/eliemugenzi/epic-mail) [![Coverage Status](https://coveralls.io/repos/github/eliemugenzi/epic-mail/badge.svg?branch=develop&kill_cache=1)](https://coveralls.io/github/eliemugenzi/epic-mail?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/368eba3147aeed2aaff9/maintainability)](https://codeclimate.com/github/eliemugenzi/epic-mail/maintainability)
 
 ## API ENDPOINTS
 
