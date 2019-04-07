@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import logger from "morgan";
+import cors from "cors";
 
 
 import authRouter from "./server/routes/auth";
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 app.use(logger("dev"));
