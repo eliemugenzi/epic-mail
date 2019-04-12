@@ -325,6 +325,24 @@ class GroupController {
           });
         });
     }
+
+    static searchGroup(req, res) {
+        const { q } = req.query;
+        const sql = `SELECT * FROM groups WHERE name LIKE='${q}'`;
+        Db.query(sql).then((result) => {
+            if (result.rows.length) {
+                return res.json({
+                    status: 200,
+                    data: result.rows
+                });
+            }
+
+            res.status(404).json({
+                status: 404,
+                error: "Group not found"
+            });
+        });
+    }
 }
 
 export default GroupController;

@@ -290,6 +290,31 @@ class MessageController {
     });
   }
 
+  static search(req, res) {
+    const { q } = req.query;
+    
+    const sqlx = `SELECT * FROM users WHERE email='${req.user.email}'`;
+    Db.query(sqlx).then((result) => {
+      if (result.rows.length) {
+        const receiverId = result.rows[0].id;
+        const sql = `SELECT * FROM messages WHERE subject LIKE='%${q}%' AND receiverId='${receiverId}'`;
+        Db.query(sql).then((result) => {
+          if (result.rows.length) {
+            return res.json({
+              status: 200,
+              data:result.rows,
+            })
+          }
+
+          res.status(404).json({
+            status: 404,
+            error:`Message with subject ${q} is not available`
+          })
+        })
+      }
+    })
+  }
+
 }
 
 
