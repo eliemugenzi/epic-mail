@@ -31,7 +31,7 @@ class UserController {
 
   static search(req, res) {
     const { q } = req.query;
-    const sql = `SELECT * FROM users WHERE firstname LIKE='%${q}%'`;
+    const sql = `SELECT * FROM users WHERE firstname LIKE '%${q}%'`;
     Db.query(sql).then(result => {
       if (result.rows.length) {
         return res.json({
@@ -40,7 +40,7 @@ class UserController {
         });
       }
 
-      const sql2 = `SELECT * FROM users WHERE lastname LIKE='%${q}%'`;
+      const sql2 = `SELECT * FROM users WHERE lastname LIKE '%${q}%'`;
       Db.query(sql2).then(result => {
         if (result.rows.length) {
           return res.json({

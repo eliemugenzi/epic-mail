@@ -297,7 +297,7 @@ class MessageController {
     Db.query(sqlx).then((result) => {
       if (result.rows.length) {
         const receiverId = result.rows[0].id;
-        const sql = `SELECT * FROM messages WHERE subject LIKE='%${q}%' AND receiverId='${receiverId}'`;
+        const sql = `SELECT * FROM messages WHERE subject LIKE '%${q}%' AND receiverId='${receiverId}'`;
         Db.query(sql).then((result) => {
           if (result.rows.length) {
             return res.json({
