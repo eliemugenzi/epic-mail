@@ -53,7 +53,11 @@ class UserController {
           status: 404,
           error: `User called ${q} is not available`
         });
+      }).catch(err=>{
+        throw err;
       });
+    }).catch(err => {
+      throw err;
     });
   }
 }
