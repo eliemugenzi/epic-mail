@@ -32,16 +32,9 @@ class UserController {
   static search(req, res) {
     const { q } = req.query;
     const sql = `SELECT * FROM users WHERE firstname LIKE '%${q}%'`;
-    Db.query(sql).then(result => {
-      if (result.rows.length) {
-        return res.json({
-          status: 200,
-          data: result.rows
-        });
-      }
-
-      const sql2 = `SELECT * FROM users WHERE lastname LIKE '%${q}%'`;
-      Db.query(sql2).then(result => {
+    Db.query(sql)
+      .then(result => {
+        console.log(result.rows);
         if (result.rows.length) {
           return res.json({
             status: 200,
@@ -49,16 +42,29 @@ class UserController {
           });
         }
 
-        res.status(404).json({
-          status: 404,
-          error: `User called ${q} is not available`
-        });
-      }).catch(err=>{
+        const sql2 = `SELECT * FROM users WHERE lastname LIKE '%${q}%'`;
+        Db.query(sql2)
+          .then(result => {
+            console.log(result.rows);
+            if (result.rows.length) {
+              return res.json({
+                status: 200,
+                data: result.rows
+              });
+            }
+
+            res.status(404).json({
+              status: 404,
+              error: `User called ${q} is not available`
+            });
+          })
+          .catch(err => {
+            throw err;
+          });
+      })
+      .catch(err => {
         throw err;
       });
-    }).catch(err => {
-      throw err;
-    });
   }
 }
 
