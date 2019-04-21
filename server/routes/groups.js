@@ -40,5 +40,5 @@ router.get(
   GroupController.singleGroupMessage
 );
 router.get("/search", verifyToken, GroupController.searchGroup);
-
+router.get("/:id/users", verifyToken, GroupController.getMembers);
 export default router;

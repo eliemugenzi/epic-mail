@@ -343,6 +343,18 @@ class GroupController {
             });
         });
     }
+
+    static getMembers(req, res) {
+        const { id } = req.params;
+        const sql = `SELECT * FROM group_members WHERE groupId='${id}'`;
+        Db.query(sql).then((result) => {
+            res.json({
+                status: 200,
+                data: result.rows
+            })
+        
+        })
+    }
 }
 
 export default GroupController;
