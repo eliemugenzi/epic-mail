@@ -41,4 +41,5 @@ router.get(
 );
 router.get("/search", verifyToken, GroupController.searchGroup);
 router.get("/:id/users", verifyToken, GroupController.getMembers);
+router.get("/:groupId/users/:userId", verifyToken, GroupController.getmember);
 export default router;

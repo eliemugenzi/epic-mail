@@ -355,6 +355,25 @@ class GroupController {
         
         })
     }
+
+    static getmember(req, res) {
+        const { groupId, memberId } = req.params;
+        const sql = `SELECT * FROM group_members WHERE groupId='${groupId}' AND memberId='${memberId}'`;
+        Db.query(sql).then((result) => {
+            if(result.rows.length){
+                res.json({
+                    status:200,
+                    data:result.rows
+                })
+            }
+            else {
+                res.status(404).json({
+                    status:404,
+                    error:"This user is not a member"
+                })
+            }
+        })
+    }
 }
 
 export default GroupController;
