@@ -3,3 +3,6 @@ node_js:
   - "stable"
 script: 
   - npm run coverage
+
+notifications:
+  email: fase
