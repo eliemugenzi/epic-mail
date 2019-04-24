@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
             if (err) {
                 return res.status(403).json({
                     status: 403,
-                    error: "Forbidden",
+                    error: "Invalid Token",
                 });
             }
             req.user = userData.user;
@@ -20,7 +20,7 @@ const verifyToken = (req, res, next) => {
         res
             .json({
                 status: 403,
-                error: "Forbidden",
+                error: "You are not authenticated",
             })
             .status(403);
     }

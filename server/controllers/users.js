@@ -89,15 +89,17 @@ class UserController {
         const sql = `SELECT * FROM users WHERE email='${req.user.email}'`;
         Db.query(sql).then((result) => {
             if (result.rows.length) {
-                return res.json({
+             res.json({
                     status: 200,
                     data: result.rows,
                 });
             }
-            res.status(404).json({
-                status: 404,
-                error: "User not found",
-            });
+            else {
+                res.status(404).json({
+                    status: 404,
+                    error: "User not found",
+                });
+            } 
         });
     }
 }
